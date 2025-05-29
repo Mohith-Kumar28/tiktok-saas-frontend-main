@@ -7,7 +7,7 @@ import { SidebarProvider } from "@/components/ui/sidebar"
 import { DirectionProvider } from "./direction-provider"
 import { ModeProvider } from "./mode-provider"
 import { NextAuthProvider } from "./next-auth-provider"
-import { NuqsProvider } from "./nuqs-provider"
+import { NuqsProvider } from "./nuqs/nuqs-main-provider"
 import { ThemeProvider } from "./theme-provider"
 
 export function Providers({
