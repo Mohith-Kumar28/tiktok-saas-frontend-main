@@ -1,5 +1,11 @@
 import AnalyticsPageView from "@/features/analytics/analytics-page-view"
 
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Analytics",
+}
+
 export default function AnalyticsPage() {
   return <AnalyticsPageView />
 }
