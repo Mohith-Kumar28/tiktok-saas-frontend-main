@@ -1,30 +1,15 @@
-import { parseAsInteger, parseAsString } from "nuqs/server"
+import FindCreatorsViewPage from "@/features/find-creators/find-creators-view-page"
 
-import NuqsParamsProvider from "@/providers/nuqs/nuqs-page-provider"
+import type { SearchParams } from "nuqs"
 
 export const metadata = {
   title: "Dashboard : Find Creators",
 }
 
-export default function page() {
-  const searchParams = {
-    page: parseAsInteger.withDefault(1),
-    perPage: parseAsInteger.withDefault(10),
-    name: parseAsString,
-    gender: parseAsString,
-    category: parseAsString,
-    // advanced filter
-    // filters: getFiltersStateParser().withDefault([]),
-    // joinOperator: parseAsStringEnum(['and', 'or']).withDefault('and')
-  }
-
-  return (
-    <NuqsParamsProvider
-      searchParams={Promise.resolve({})}
-      searchParamsSchema={searchParams}
-    >
-      hi
-      {/* <FindCreatorsViewPage /> */}
-    </NuqsParamsProvider>
-  )
+export default function page({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>
+}) {
+  return <FindCreatorsViewPage searchParams={searchParams} />
 }

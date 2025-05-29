@@ -1,27 +1,36 @@
-import { fakeInfluencers, Influencer } from '@/constants/mock-api';
-import { searchParamsCache } from '@/lib/searchparams';
-import { InfluencersTable } from './influencers-table';
-import { columns } from './influencers-table/columns';
+import type { Influencer } from "../constants/mock-api"
 
-type InfluencersListPage = {};
+import { tableSearchParamsSchema } from "../schemas/search-params"
+
+import { fakeInfluencers } from "../constants/mock-api"
+import { createSearchParamsHelpers } from "@/lib/search-params"
+
+import { InfluencersTable } from "./influencers-table"
+import { columns } from "./influencers-table/columns"
+
+type InfluencersListPage = {}
 
 export default async function InfluencersList({}: InfluencersListPage) {
+  const { searchParamsCache } = createSearchParamsHelpers(
+    tableSearchParamsSchema
+  )
+
   // Showcasing the use of search params cache in nested RSCs
-  const page = searchParamsCache.get('page');
-  const search = searchParamsCache.get('name');
-  const pageLimit = searchParamsCache.get('perPage');
-  const categories = searchParamsCache.get('category');
+  const page = searchParamsCache.get("page")
+  const search = searchParamsCache.get("name")
+  const pageLimit = searchParamsCache.get("perPage")
+  const categories = searchParamsCache.get("category")
 
   const filters = {
     page,
     limit: pageLimit,
     ...(search && { search }),
-    ...(categories && { categories: categories })
-  };
+    ...(categories && { categories: categories }),
+  }
 
-  const data = await fakeInfluencers.getInfluencers(filters);
-  const totalInfluencers = data.total_influencers;
-  const influencers: Influencer[] = data.influencers;
+  const data = await fakeInfluencers.getInfluencers(filters)
+  const totalInfluencers = data.total_influencers
+  const influencers: Influencer[] = data.influencers
 
   return (
     <InfluencersTable
@@ -29,7 +38,7 @@ export default async function InfluencersList({}: InfluencersListPage) {
       totalItems={totalInfluencers}
       columns={columns}
     />
-  );
+  )
 }
 
 // 'use client';

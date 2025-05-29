@@ -1,15 +1,26 @@
-import PageContainer from '@/components/layout/page-container';
-import InfluencersList from './components/influencers-list';
-import SearchAndFilters from './components/search/search-and-filters';
+import type { SearchParams } from "nuqs"
 
-const FindCreatorsViewPage = () => {
+import { tableSearchParamsSchema } from "./schemas/search-params"
+
+import NuqsParamsProvider from "@/providers/nuqs/nuqs-page-provider"
+import InfluencersList from "./components/influencers-list"
+import SearchAndFilters from "./components/search/search-and-filters"
+
+const FindCreatorsViewPage = ({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>
+}) => {
   return (
-    <PageContainer scrollable={false}>
+    <NuqsParamsProvider
+      searchParams={searchParams}
+      searchParamsSchema={tableSearchParamsSchema}
+    >
       <SearchAndFilters />
 
       <InfluencersList />
-    </PageContainer>
-  );
-};
+    </NuqsParamsProvider>
+  )
+}
 
-export default FindCreatorsViewPage;
+export default FindCreatorsViewPage

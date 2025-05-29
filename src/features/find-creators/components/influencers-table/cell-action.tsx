@@ -1,28 +1,31 @@
-'use client';
-import { AlertModal } from '@/components/modal/alert-modal';
-import { Button } from '@/components/ui/button';
+"use client"
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { EllipsisVerticalIcon, Pencil, Trash2 } from "lucide-react"
+
+import type { Influencer } from "../../constants/mock-api"
+
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import { Influencer } from '@/constants/mock-api';
-import { IconEdit, IconDotsVertical, IconTrash } from '@tabler/icons-react';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { AlertModal } from "@/components/ui/modals/alert-modal"
 
 interface CellActionProps {
-  data: Influencer;
+  data: Influencer
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
-  const [loading] = useState(false);
-  const [open, setOpen] = useState(false);
-  const router = useRouter();
+  const [loading] = useState(false)
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
 
-  const onConfirm = async () => {};
+  const onConfirm = async () => {}
 
   return (
     <>
@@ -34,24 +37,24 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       />
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant='ghost' className='h-8 w-8 p-0'>
-            <span className='sr-only'>Open menu</span>
-            <IconDotsVertical className='h-4 w-4' />
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <EllipsisVerticalIcon className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align='end'>
+        <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
           <DropdownMenuItem
             onClick={() => router.push(`/dashboard/influencer/${data.id}`)}
           >
-            <IconEdit className='mr-2 h-4 w-4' /> Update
+            <Pencil className="mr-2 h-4 w-4" /> Update
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
-            <IconTrash className='mr-2 h-4 w-4' /> Delete
+            <Trash2 className="mr-2 h-4 w-4" /> Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
-  );
-};
+  )
+}

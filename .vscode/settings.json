@@ -20,5 +20,6 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "WillLuke.nextjs.hasPrompted": true
+  "WillLuke.nextjs.hasPrompted": true,
+  "cSpell.words": ["Influencers"]
 }
