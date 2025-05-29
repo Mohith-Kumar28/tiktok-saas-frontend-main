@@ -1,6 +1,6 @@
 import { newVsReturningVisitors } from "../_data/new-vs-returning-visitors"
 
-import { DashboardCard } from "@/components/dashboards/dashboard-card"
+import { DashboardCard } from "@/features/_components/dashboard-card/dashboard-card"
 import { NewVsReturningVisitorsChart } from "./new-vs-returning-visitors-chart"
 import { NewVsReturningVisitorsList } from "./new-vs-returning-visitors-list"
 

@@ -3,7 +3,7 @@ import type { OverviewType } from "../../types"
 import {
   DashboardCardActionsDropdown,
   DashboardOverviewCardV3,
-} from "@/components/dashboards/dashboard-card"
+} from "@/features/_components/dashboard-card/dashboard-card"
 import { BounceRateChart } from "./bounce-rate-chart"
 
 export function BounceRate({ data }: { data: OverviewType["bounceRate"] }) {

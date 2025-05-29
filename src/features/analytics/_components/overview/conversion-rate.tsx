@@ -3,7 +3,7 @@ import type { OverviewType } from "../../types"
 import {
   DashboardCardActionsDropdown,
   DashboardOverviewCardV3,
-} from "@/components/dashboards/dashboard-card"
+} from "@/features/_components/dashboard-card/dashboard-card"
 import { ConversionRateChart } from "./conversion-rate-chart"
 
 export function ConversionRate({
