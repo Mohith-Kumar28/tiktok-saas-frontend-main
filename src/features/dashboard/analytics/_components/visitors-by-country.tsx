@@ -1,6 +1,6 @@
 import { visitorsByCountryData } from "../_data/visitors-by-country"
 
-import { DashboardCard } from "@/features/_components/dashboard-card/dashboard-card"
+import { DashboardCard } from "@/features/dashboard/_components/dashboard-card/dashboard-card"
 import { VisitorsByCountryList } from "./visitors-by-country-list"
 
 export function VisitorsByCountry() {

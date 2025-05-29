@@ -3,13 +3,13 @@ import type { OverviewType } from "../../types"
 import {
   DashboardCardActionsDropdown,
   DashboardOverviewCardV3,
-} from "@/features/_components/dashboard-card/dashboard-card"
-import { UniqueVisitorsChart } from "./unique-visitors-chart"
+} from "@/features/dashboard/_components/dashboard-card/dashboard-card"
+import { ConversionRateChart } from "./conversion-rate-chart"
 
-export function UniqueVisitors({
+export function ConversionRate({
   data,
 }: {
-  data: OverviewType["uniqueVisitors"]
+  data: OverviewType["conversionRate"]
 }) {
   return (
     <DashboardOverviewCardV3
@@ -17,9 +17,10 @@ export function UniqueVisitors({
         value: data.averageValue,
         percentageChange: data.percentageChange,
       }}
-      title="Unique Visitors"
+      title="Conversion Rate"
       action={<DashboardCardActionsDropdown />}
-      chart={<UniqueVisitorsChart data={data.perMonth} />}
+      chart={<ConversionRateChart data={data.perMonth} />}
+      formatStyle="percent"
     />
   )
 }

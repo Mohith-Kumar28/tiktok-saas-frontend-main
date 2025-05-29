@@ -3,7 +3,7 @@ import { conversionFunnelData } from "../_data/conversion-funnel"
 import {
   DashboardCard,
   DashboardCardActionsDropdown,
-} from "@/features/_components/dashboard-card/dashboard-card"
+} from "@/features/dashboard/_components/dashboard-card/dashboard-card"
 import { ConversionFunnelChart } from "./conversion-funnel-chart"
 import { ConversionFunnelList } from "./conversion-funnel-list"
 

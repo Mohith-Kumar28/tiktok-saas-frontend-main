@@ -3,7 +3,7 @@ import type { OverviewType } from "../../types"
 import {
   DashboardCardActionsDropdown,
   DashboardOverviewCardV3,
-} from "@/features/_components/dashboard-card/dashboard-card"
+} from "@/features/dashboard/_components/dashboard-card/dashboard-card"
 import { AverageSessionDurationChart } from "./average-session-duration-chart"
 
 export function AverageSessionDuration({

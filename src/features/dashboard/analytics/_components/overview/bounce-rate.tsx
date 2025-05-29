@@ -3,23 +3,19 @@ import type { OverviewType } from "../../types"
 import {
   DashboardCardActionsDropdown,
   DashboardOverviewCardV3,
-} from "@/features/_components/dashboard-card/dashboard-card"
-import { ConversionRateChart } from "./conversion-rate-chart"
+} from "@/features/dashboard/_components/dashboard-card/dashboard-card"
+import { BounceRateChart } from "./bounce-rate-chart"
 
-export function ConversionRate({
-  data,
-}: {
-  data: OverviewType["conversionRate"]
-}) {
+export function BounceRate({ data }: { data: OverviewType["bounceRate"] }) {
   return (
     <DashboardOverviewCardV3
       data={{
         value: data.averageValue,
         percentageChange: data.percentageChange,
       }}
-      title="Conversion Rate"
+      title="Bounce Rate"
       action={<DashboardCardActionsDropdown />}
-      chart={<ConversionRateChart data={data.perMonth} />}
+      chart={<BounceRateChart data={data.perMonth} />}
       formatStyle="percent"
     />
   )

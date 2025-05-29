@@ -3,7 +3,7 @@ import { trafficSourcesData } from "../_data/traffic-sources"
 import {
   DashboardCard,
   DashboardCardActionsDropdown,
-} from "@/features/_components/dashboard-card/dashboard-card"
+} from "@/features/dashboard/_components/dashboard-card/dashboard-card"
 import { TrafficSourcesChart } from "./traffic-sources-chart"
 import { TrafficSourcesTable } from "./traffic-sources-table"
 
