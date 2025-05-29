@@ -7,6 +7,7 @@ import { SidebarProvider } from "@/components/ui/sidebar"
 import { DirectionProvider } from "./direction-provider"
 import { ModeProvider } from "./mode-provider"
 import { NextAuthProvider } from "./next-auth-provider"
+import { NuqsProvider } from "./nuqs-provider"
 import { ThemeProvider } from "./theme-provider"
 
 export function Providers({
@@ -24,11 +25,13 @@ export function Providers({
     <SettingsProvider locale={locale}>
       <ModeProvider>
         <ThemeProvider>
-          <DirectionProvider direction={direction}>
-            <NextAuthProvider session={session}>
-              <SidebarProvider>{children}</SidebarProvider>
-            </NextAuthProvider>
-          </DirectionProvider>
+          <NuqsProvider>
+            <DirectionProvider direction={direction}>
+              <NextAuthProvider session={session}>
+                <SidebarProvider>{children}</SidebarProvider>
+              </NextAuthProvider>
+            </DirectionProvider>
+          </NuqsProvider>
         </ThemeProvider>
       </ModeProvider>
     </SettingsProvider>
