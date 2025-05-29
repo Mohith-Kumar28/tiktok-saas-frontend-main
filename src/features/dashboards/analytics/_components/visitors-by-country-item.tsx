@@ -3,7 +3,7 @@ import Image from "next/image"
 import type { VisitorsByCountryDataType } from "../types"
 
 import { Progress } from "@/components/ui/progress"
-import { PercentageChangeBadge } from "@/features/dashboard/_components/dashboard-card/percentage-change-badge"
+import { PercentageChangeBadge } from "@/features/dashboards/_components/dashboard-card/percentage-change-badge"
 
 export function VisitorsByCountryItem({
   data,

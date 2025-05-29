@@ -3,7 +3,7 @@ import type { OverviewType } from "../../types"
 import {
   DashboardCardActionsDropdown,
   DashboardOverviewCardV3,
-} from "@/features/dashboard/_components/dashboard-card/dashboard-card"
+} from "@/features/dashboards/_components/dashboard-card/dashboard-card"
 import { UniqueVisitorsChart } from "./unique-visitors-chart"
 
 export function UniqueVisitors({

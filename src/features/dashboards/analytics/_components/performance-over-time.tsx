@@ -12,7 +12,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { DashboardCard } from "@/features/dashboard/_components/dashboard-card/dashboard-card"
+import { DashboardCard } from "@/features/dashboards/_components/dashboard-card/dashboard-card"
 import { PerformanceOverTimeChart } from "./performance-over-time-chart"
 import { PerformanceOverTimeSummary } from "./performance-over-time-summary"
 

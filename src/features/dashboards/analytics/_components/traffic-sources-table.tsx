@@ -10,8 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { PercentageChangeBadge } from "@/features/dashboard/_components/dashboard-card/percentage-change-badge"
 import { DynamicIcon } from "@/components/dynamic-icon"
+import { PercentageChangeBadge } from "@/features/dashboards/_components/dashboard-card/percentage-change-badge"
 
 export function TrafficSourcesTable({
   data,

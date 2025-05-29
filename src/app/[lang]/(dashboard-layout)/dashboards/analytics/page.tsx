@@ -1,4 +1,4 @@
-import AnalyticsPageView from "@/features/dashboard/analytics/analytics-page-view"
+import AnalyticsPageView from "@/features/dashboards/analytics/analytics-page-view"
 
 import type { Metadata } from "next"
 
