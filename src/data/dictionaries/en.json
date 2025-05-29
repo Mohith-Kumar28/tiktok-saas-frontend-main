@@ -146,7 +146,15 @@
       "profile": "Profile",
       "settings": "Settings",
       "signOut": "Sign out"
-    }
+    },
+    "sidebar": "Sidebar",
+    "outreach": "Outreach",
+    "myBots": "My Bots",
+    "emailCampaigns": "Email Campaigns",
+    "myLists": "My Lists",
+    "findCreators": "Find Creators",
+    "product": "Product",
+    "actions": "Actions"
   },
   "label": {
     "soon": "Soon"
