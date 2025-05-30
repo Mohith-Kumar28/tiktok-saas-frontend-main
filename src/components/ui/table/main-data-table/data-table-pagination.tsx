@@ -1,6 +1,3 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
-import { ChevronsLeft, ChevronsRight } from "lucide-react"
-
 import type { Table } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
@@ -13,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { DynamicIcon } from "@/components/dynamic-icon"
 
 interface DataTablePaginationProps<TData> extends React.ComponentProps<"div"> {
   table: Table<TData>
@@ -77,7 +75,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
-            <ChevronsLeft />
+            <DynamicIcon size="md" name="ChevronsLeft" />
           </Button>
           <Button
             aria-label="Go to previous page"
@@ -87,7 +85,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            <ChevronLeftIcon />
+            <DynamicIcon name="ChevronLeft" />
           </Button>
           <Button
             aria-label="Go to next page"
@@ -97,7 +95,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            <ChevronRightIcon />
+            <DynamicIcon name="ChevronRight" />
           </Button>
           <Button
             aria-label="Go to last page"
@@ -107,7 +105,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
-            <ChevronsRight />
+            <DynamicIcon size="md" name="ChevronsRight" />
           </Button>
         </div>
       </div>

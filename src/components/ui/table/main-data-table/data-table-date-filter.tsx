@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { CalendarIcon, XCircle } from "lucide-react"
 
 import type { Column } from "@tanstack/react-table"
 import type { DateRange } from "react-day-picker"
@@ -16,6 +15,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
+import { DynamicIcon } from "@/components/dynamic-icon"
 
 type DateSelection = Date[] | DateRange
 
@@ -186,10 +186,10 @@ export function DataTableDateFilter<TData>({
               onClick={onReset}
               className="focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:outline-none"
             >
-              <XCircle />
+              <DynamicIcon name="CircleX" />
             </div>
           ) : (
-            <CalendarIcon />
+            <DynamicIcon name="Calendar" />
           )}
           {label}
         </Button>

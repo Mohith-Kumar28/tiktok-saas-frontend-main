@@ -1,8 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { CheckIcon } from "@radix-ui/react-icons"
-import { PlusCircle, XCircle } from "lucide-react"
 
 import type { Column } from "@tanstack/react-table"
 import type { Option } from "../types/data-table"
@@ -26,6 +24,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
+import { DynamicIcon } from "@/components/dynamic-icon"
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>
@@ -89,10 +88,10 @@ export function DataTableFacetedFilter<TData, TValue>({
               onClick={onReset}
               className="focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:outline-none"
             >
-              <XCircle />
+              <DynamicIcon name="CircleX" />
             </div>
           ) : (
-            <PlusCircle />
+            <DynamicIcon name="CirclePlus" />
           )}
           {title}
           {selectedValues?.size > 0 && (
@@ -155,7 +154,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                           : "opacity-50 [&_svg]:invisible"
                       )}
                     >
-                      <CheckIcon />
+                      <DynamicIcon name="Check" />
                     </div>
                     {option.icon && <option.icon />}
                     <span className="truncate">{option.label}</span>

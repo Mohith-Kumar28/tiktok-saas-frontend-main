@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { Cross2Icon } from "@radix-ui/react-icons"
 
 import type { Column, Table } from "@tanstack/react-table"
 
@@ -9,6 +8,7 @@ import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { DynamicIcon } from "@/components/dynamic-icon"
 import { DataTableDateFilter } from "./data-table-date-filter"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 import { DataTableSliderFilter } from "./data-table-slider-filter"
@@ -57,7 +57,7 @@ export function DataTableToolbar<TData>({
             className="border-dashed"
             onClick={onReset}
           >
-            <Cross2Icon />
+            <DynamicIcon name="X" />
             Reset
           </Button>
         )}
