@@ -5,7 +5,7 @@ import { useParams, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-import type { ForgotPasswordFormType, LocaleType } from "@/types"
+import type { ForgotPasswordFormType, LocaleType } from "@/types/types"
 
 import { ForgotPasswordSchema } from "@/schemas/forgot-passward-schema"
 

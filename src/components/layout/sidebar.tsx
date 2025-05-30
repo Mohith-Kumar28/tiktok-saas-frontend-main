@@ -10,7 +10,7 @@ import type {
   LocaleType,
   NavigationNestedItem,
   NavigationRootItem,
-} from "@/types"
+} from "@/types/types"
 
 import { navigationsData } from "@/data/navigations"
 

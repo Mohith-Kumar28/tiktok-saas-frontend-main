@@ -1,4 +1,4 @@
-import type { NotificationType } from "@/types"
+import type { NotificationType } from "@/types/types"
 
 export const notificationData: NotificationType = {
   unreadCount: 100,

@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useDropzone } from "react-dropzone"
 import { Loader2, UploadCloud, X } from "lucide-react"
 
-import type { FileType } from "@/types"
+import type { FileType } from "@/types/types"
 import type { DropzoneOptions } from "react-dropzone"
 
 import { cn, formatFileSize, wait } from "@/lib/utils"

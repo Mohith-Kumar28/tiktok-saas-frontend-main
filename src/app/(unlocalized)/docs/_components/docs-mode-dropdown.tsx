@@ -3,7 +3,7 @@
 import { useCallback } from "react"
 import { MoonStar, Sun, SunMoon } from "lucide-react"
 
-import type { ModeType } from "@/types"
+import type { ModeType } from "@/types/types"
 
 import { useSettings } from "@/hooks/use-settings"
 import { Button } from "@/components/ui/button"

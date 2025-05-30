@@ -2,7 +2,7 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva } from "class-variance-authority"
 import { LoaderCircle } from "lucide-react"
 
-import type { IconType } from "@/types"
+import type { IconType } from "@/types/types"
 import type { VariantProps } from "class-variance-authority"
 import type { ComponentProps } from "react"
 

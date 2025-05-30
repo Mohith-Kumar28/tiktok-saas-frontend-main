@@ -1,7 +1,7 @@
 // More info: https://nextjs.org/docs/app/building-your-application/routing/internationalization#localization
 import "server-only"
 
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 
 const dictionaries = {
   en: () =>

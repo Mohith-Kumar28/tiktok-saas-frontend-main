@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import type { NavigationRootItem } from "@/types"
+import type { NavigationRootItem } from "@/types/types"
 
 import { sidebarNavigationData } from "../_data/sidebar-navigation"
 

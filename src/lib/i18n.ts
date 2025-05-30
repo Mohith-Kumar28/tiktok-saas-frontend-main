@@ -1,7 +1,7 @@
 import { match } from "@formatjs/intl-localematcher"
 import Negotiator from "negotiator"
 
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 import type { NextRequest } from "next/server"
 
 import { i18n } from "@/configs/i18n"

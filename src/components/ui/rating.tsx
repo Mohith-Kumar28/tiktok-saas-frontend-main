@@ -4,7 +4,7 @@ import { useState } from "react"
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
 import { cva } from "class-variance-authority"
 
-import type { DynamicIconNameType } from "@/types"
+import type { DynamicIconNameType } from "@/types/types"
 import type { VariantProps } from "class-variance-authority"
 import type { ComponentPropsWithoutRef } from "react"
 

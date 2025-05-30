@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority"
 import { EllipsisVertical } from "lucide-react"
 
-import type { FormatStyleType, IconType } from "@/types"
+import type { FormatStyleType, IconType } from "@/types/types"
 import type { VariantProps } from "class-variance-authority"
 import type { ComponentProps, ReactNode } from "react"
 

@@ -1,6 +1,6 @@
 "use client"
 
-import type { DynamicIconNameType } from "@/types"
+import type { DynamicIconNameType } from "@/types/types"
 import type { ColumnDef } from "@tanstack/react-table"
 import type { EngagementByDeviceType } from "../types"
 

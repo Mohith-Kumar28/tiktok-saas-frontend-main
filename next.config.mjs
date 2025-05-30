@@ -8,6 +8,17 @@ const nextConfig = {
   // See https://lucide.dev/guide/packages/lucide-react#nextjs-example
   transpilePackages: ["lucide-react"],
 
+  // Add images configuration to allow api.slingacademy.com domain
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.slingacademy.com",
+        pathname: "/**",
+      },
+    ],
+  },
+
   // See https://nextjs.org/docs/app/building-your-application/routing/redirecting#redirects-in-nextconfigjs
   async redirects() {
     return [

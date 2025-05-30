@@ -5,7 +5,7 @@ import { useParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-import type { LocaleType, VerifyEmailFormType } from "@/types"
+import type { LocaleType, VerifyEmailFormType } from "@/types/types"
 
 import { VerifyEmailSchema } from "@/schemas/verify-email-schema"
 

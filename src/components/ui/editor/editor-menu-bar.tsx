@@ -3,7 +3,7 @@
 import { useRef, useState } from "react"
 import { Check, ImageIcon, LinkIcon, Palette, Type, Unlink } from "lucide-react"
 
-import type { DynamicIconNameType } from "@/types"
+import type { DynamicIconNameType } from "@/types/types"
 import type { ChainedCommands, Editor } from "@tiptap/react"
 import type { FormEvent } from "react"
 

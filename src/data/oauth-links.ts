@@ -1,6 +1,6 @@
 import { SiFacebook, SiGithub, SiGoogle, SiX } from "react-icons/si"
 
-import type { OAuthLinkType } from "../types"
+import type { OAuthLinkType } from "../types/types"
 
 export const oauthLinksData: OAuthLinkType[] = [
   { href: "/", label: "Facebook", icon: SiFacebook },

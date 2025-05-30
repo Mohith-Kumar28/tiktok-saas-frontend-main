@@ -9,7 +9,7 @@ import "../globals.css"
 
 import { Providers } from "@/providers"
 
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
 

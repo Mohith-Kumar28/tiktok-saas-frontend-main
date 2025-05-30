@@ -8,7 +8,7 @@ import {
   SiVisa,
 } from "react-icons/si"
 
-import type { IconProps, IconType } from "@/types"
+import type { IconProps, IconType } from "@/types/types"
 
 export const creditCardIcons: Record<string, IconType> = {
   visa: SiVisa,

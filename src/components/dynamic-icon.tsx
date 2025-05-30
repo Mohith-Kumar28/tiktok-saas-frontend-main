@@ -1,7 +1,7 @@
 // Refer to Lucide documentation for more details https://lucide.dev/guide/packages/lucide-react
 import { icons } from "lucide-react"
 
-import type { DynamicIconNameType } from "@/types"
+import type { DynamicIconNameType } from "@/types/types"
 import type { LucideProps } from "lucide-react"
 
 interface DynamicIconProps extends LucideProps {

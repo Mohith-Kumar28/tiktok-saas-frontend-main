@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 
 import type { DictionaryType } from "@/lib/get-dictionary"
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 import type { ComponentProps } from "react"
 
 import { ensureLocalizedPathname } from "@/lib/i18n"

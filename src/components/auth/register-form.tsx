@@ -5,7 +5,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-import type { LocaleType, RegisterFormType } from "@/types"
+import type { LocaleType, RegisterFormType } from "@/types/types"
 
 import { RegisterSchema } from "@/schemas/register-schema"
 

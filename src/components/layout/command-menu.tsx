@@ -9,7 +9,7 @@ import type {
   LocaleType,
   NavigationNestedItem,
   NavigationRootItem,
-} from "@/types"
+} from "@/types/types"
 import type { DialogProps } from "@radix-ui/react-dialog"
 
 import { navigationsData } from "@/data/navigations"

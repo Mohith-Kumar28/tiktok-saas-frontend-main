@@ -6,7 +6,7 @@ import { useParams, usePathname } from "next/navigation"
 import { Earth } from "lucide-react"
 
 import type { DictionaryType } from "@/lib/get-dictionary"
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 
 import { i18n } from "@/configs/i18n"
 import { relocalizePathname } from "@/lib/i18n"

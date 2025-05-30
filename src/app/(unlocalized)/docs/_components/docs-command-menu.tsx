@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { useMedia } from "react-use"
 import { ChevronDown, Search } from "lucide-react"
 
-import type { NavigationNestedItem, NavigationRootItem } from "@/types"
+import type { NavigationNestedItem, NavigationRootItem } from "@/types/types"
 import type { DialogProps } from "@radix-ui/react-dialog"
 
 import { sidebarNavigationData } from "../_data/sidebar-navigation"

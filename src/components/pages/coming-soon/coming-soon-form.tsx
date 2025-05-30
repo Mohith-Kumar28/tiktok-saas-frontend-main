@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-import type { ComingSoonFormType } from "@/types"
+import type { ComingSoonFormType } from "@/types/types"
 
 import { ComingSoonSchema } from "@/schemas/coming-soon-schema"
 

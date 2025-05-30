@@ -5,7 +5,7 @@ import { useParams } from "next/navigation"
 import { MoonStar, Sun, SunMoon } from "lucide-react"
 
 import type { DictionaryType } from "@/lib/get-dictionary"
-import type { LocaleType, ModeType } from "@/types"
+import type { LocaleType, ModeType } from "@/types/types"
 
 import { i18n } from "@/configs/i18n"
 

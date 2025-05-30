@@ -1,4 +1,4 @@
-import type { DirectionType, LocaleType } from "@/types"
+import type { DirectionType, LocaleType } from "@/types/types"
 import type { Session } from "next-auth"
 import type { ReactNode } from "react"
 

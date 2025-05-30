@@ -1,4 +1,4 @@
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 import type { ReactNode } from "react"
 
 import { getDictionary } from "@/lib/get-dictionary"

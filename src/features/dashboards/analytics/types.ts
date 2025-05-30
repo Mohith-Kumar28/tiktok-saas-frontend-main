@@ -1,4 +1,4 @@
-import type { DynamicIconNameType } from "@/types"
+import type { DynamicIconNameType } from "@/types/types"
 
 export interface VisitorsByCountryDataType {
   summary: {

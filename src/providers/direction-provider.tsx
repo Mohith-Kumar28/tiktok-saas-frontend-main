@@ -2,7 +2,7 @@
 
 import { DirectionProvider as DirectionProviderPrimitive } from "@radix-ui/react-direction"
 
-import type { DirectionType } from "@/types"
+import type { DirectionType } from "@/types/types"
 import type { ReactNode } from "react"
 
 export function DirectionProvider({

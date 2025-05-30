@@ -1,25 +1,21 @@
-import type { SearchParams } from "nuqs"
+import { createSearchParamsCache } from "nuqs/server"
 
 import { tableSearchParamsSchema } from "./schemas/search-params"
 
-import NuqsParamsProvider from "@/providers/nuqs/nuqs-page-provider"
 import InfluencersList from "./components/influencers-list"
 import SearchAndFilters from "./components/search/search-and-filters"
 
-const FindCreatorsViewPage = ({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>
-}) => {
-  return (
-    <NuqsParamsProvider
-      searchParams={searchParams}
-      searchParamsSchema={tableSearchParamsSchema}
-    >
-      <SearchAndFilters />
+// Create the cache at the module level
+export const searchParamsCache = createSearchParamsCache(
+  tableSearchParamsSchema
+)
 
+const FindCreatorsViewPage = async ({}: {}) => {
+  return (
+    <>
+      <SearchAndFilters />
       <InfluencersList />
-    </NuqsParamsProvider>
+    </>
   )
 }
 

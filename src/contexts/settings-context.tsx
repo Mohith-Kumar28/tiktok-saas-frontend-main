@@ -3,7 +3,7 @@
 import { createContext, useCallback, useEffect, useState } from "react"
 import { useCookie } from "react-use"
 
-import type { LocaleType, SettingsType } from "@/types"
+import type { LocaleType, SettingsType } from "@/types/types"
 import type { ReactNode } from "react"
 
 export const defaultSettings: SettingsType = {

@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 
 import { ensureLocalizedPathname } from "@/lib/i18n"
 

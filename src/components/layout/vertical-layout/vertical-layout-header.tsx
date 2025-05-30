@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation"
 
 import type { DictionaryType } from "@/lib/get-dictionary"
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { LanguageDropdown } from "@/components/language-dropdown"
