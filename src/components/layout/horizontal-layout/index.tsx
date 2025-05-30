@@ -1,7 +1,7 @@
 import type { DictionaryType } from "@/lib/get-dictionary"
 import type { ReactNode } from "react"
 
-import { Footer } from "../footer"
+// import { Footer } from "../footer"
 import { Sidebar } from "../sidebar"
 import { HorizontalLayoutHeader } from "./horizontal-layout-header"
 
@@ -17,10 +17,11 @@ export function HorizontalLayout({
       <Sidebar dictionary={dictionary} />
       <div className="w-full">
         <HorizontalLayoutHeader dictionary={dictionary} />
-        <main className="min-h-[calc(100svh-9.85rem)] bg-muted/40">
+        <main className="min-h-[calc(100svh-6.4rem)] bg-muted/40">
+          {/* <main className="min-h-[calc(100svh-9.85rem)] bg-muted/40"> */}
           {children}
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   )

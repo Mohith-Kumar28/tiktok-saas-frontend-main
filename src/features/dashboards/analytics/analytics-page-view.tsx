@@ -6,7 +6,6 @@ import { PerformanceOverTime } from "./_components/performance-over-time"
 import { TrafficSources } from "./_components/traffic-sources"
 import { VisitorsByCountry } from "./_components/visitors-by-country"
 
-
 export default function AnalyticsPageView() {
   return (
     <section className="container grid gap-4 p-4 md:grid-cols-2">
