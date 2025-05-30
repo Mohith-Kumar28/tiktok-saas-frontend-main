@@ -191,7 +191,7 @@ export const fakeInfluencers = {
         "Travel",
       ]
 
-      const username = faker.internet.userName()
+      const username = faker.internet.username()
       return {
         id,
         name: faker.person.fullName(),
