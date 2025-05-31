@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { Search as SearchIcon } from "lucide-react"
 
 import type { TOption, TSearchState } from "./types"
 
@@ -59,8 +58,11 @@ export const Search = ({
           }
         }}
       />
-      <Button className="rounded-l-none" onClick={handleSearch}>
-        <SearchIcon className="size-4" />
+      <Button
+        startIcon="Search"
+        className="rounded-l-none"
+        onClick={handleSearch}
+      >
         Search
       </Button>
     </div>

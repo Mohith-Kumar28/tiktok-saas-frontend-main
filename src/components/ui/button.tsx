@@ -69,7 +69,7 @@ export function Button({
       data-slot="button"
       className={cn(
         buttonVariants({ variant, size, className }),
-        hasIcons && "gap-1.5"
+        hasIcons && "gap-2"
       )}
       {...props}
     >
