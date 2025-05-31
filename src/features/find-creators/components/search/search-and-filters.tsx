@@ -90,7 +90,7 @@ const SearchAndFilters = () => {
   }
 
   return (
-    <Card className="relative w-full pb-4">
+    <Card className="relative w-full ">
       <CardContent>
         <div className="flex w-full gap-4">
           <Search
@@ -99,11 +99,11 @@ const SearchAndFilters = () => {
             matchInOptions={matchInOptions}
           />
           <Button
-            variant="outline"
-            className="px-2 rounded-full py-[2px] h-auto font-semibold text-[12px] absolute left-1/2 translate-y-1/2 bottom-0 -translate-x-1/2"
+            variant="default"
+            className="px-2 rounded-full py-[2px] h-auto font-semibold text-[12px] absolute left-1/2 translate-y-1/2 bottom-0 -translate-x-1/2 "
             onClick={() => setIsFiltersOpen(!isFiltersOpen)}
           >
-            {isFiltersOpen ? "Hide Applied Filters" : "Show Applied Filters"}
+            {/* {isFiltersOpen ? "Hide Applied Filters" : "Show Applied Filters"} */}
             <DynamicIcon
               name="ChevronDown"
               size="sm"
