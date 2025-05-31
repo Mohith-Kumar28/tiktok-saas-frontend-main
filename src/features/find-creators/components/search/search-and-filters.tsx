@@ -115,12 +115,12 @@ const SearchAndFilters = () => {
         <div
           className={cn(
             "grid transition-all duration-200",
-            isFiltersOpen ? "grid-rows-[1fr] py-8" : "grid-rows-[0fr]"
+            isFiltersOpen ? "" : "hidden "
           )}
         >
           <AppliedFilters
             onFilterChange={handleFilterChange}
-            values={filtersState}
+            values={filtersUrlState}
             filterSections={filterSections}
           />
         </div>
