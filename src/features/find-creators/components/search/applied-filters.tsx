@@ -13,21 +13,21 @@ interface AppliedFiltersProps {
     value: string | null,
     isUrlState: boolean
   ) => void
-  values: Partial<TFilterValues>
-  filterSections: TFilterSection[]
+  appliedFilters: Partial<TFilterValues>
+  allFilters: TFilterSection[]
 }
 
 export const AppliedFilters = ({
   onFilterChange,
-  values,
-  filterSections,
+  appliedFilters,
+  allFilters,
 }: AppliedFiltersProps) => {
   // Get all applied filters with their labels
-  const appliedFilters = filterSections.flatMap((section) =>
+  const appliedFiltersWithData = allFilters.flatMap((section) =>
     section.filters
-      .filter((filter) => values[filter.name as keyof TFilterValues])
+      .filter((filter) => appliedFilters[filter.name as keyof TFilterValues])
       .map((filter) => {
-        const value = values[filter.name as keyof TFilterValues]
+        const value = appliedFilters[filter.name as keyof TFilterValues]
         const option = filter.options.find((opt) => opt.value === value)
         return {
           name: filter.name,
@@ -37,13 +37,13 @@ export const AppliedFilters = ({
       })
   )
 
-  if (appliedFilters.length === 0) {
+  if (appliedFiltersWithData.length === 0) {
     return null
   }
 
   return (
     <div className="flex flex-wrap items-center gap-2 p-2">
-      {appliedFilters.map((filter) => (
+      {appliedFiltersWithData.map((filter) => (
         <Badge key={`${filter.name}-${filter.label}`} variant="secondary">
           {filter.displayName}:{filter.label}
           <Button

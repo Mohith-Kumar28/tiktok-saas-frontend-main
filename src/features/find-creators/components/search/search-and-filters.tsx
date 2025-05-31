@@ -131,8 +131,8 @@ const SearchAndFilters = () => {
         >
           <AppliedFilters
             onFilterChange={handleFilterChange}
-            values={filtersUrlState}
-            filterSections={filterSections}
+            appliedFilters={filtersUrlState}
+            allFilters={filterSections}
           />
         </div>
       </CardContent>
