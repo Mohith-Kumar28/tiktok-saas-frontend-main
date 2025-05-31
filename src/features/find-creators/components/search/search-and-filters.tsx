@@ -75,6 +75,7 @@ const SearchAndFilters = () => {
 
   const handleFilterReset = () => {
     setFiltersState({})
+    setFiltersUrlState(null)
   }
 
   return (
