@@ -65,12 +65,23 @@ const SearchAndFilters = () => {
     setFiltersUrlState(filterUrlValues)
   }
 
-  const handleFilterChange = (key: string, value: string) => {
+  const handleFilterChange = (
+    key: string,
+    value: string | null,
+    isUrlState: boolean = false
+  ) => {
     // Only update local state
     setFiltersState((prev) => ({
       ...prev,
       [key]: value,
     }))
+
+    if (isUrlState) {
+      setFiltersUrlState((prev) => ({
+        ...prev,
+        [key]: value,
+      }))
+    }
   }
 
   const handleFilterReset = () => {

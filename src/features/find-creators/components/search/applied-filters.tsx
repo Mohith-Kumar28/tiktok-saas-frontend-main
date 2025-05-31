@@ -8,7 +8,11 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 interface AppliedFiltersProps {
-  onFilterChange: (key: keyof TFilterValues, value: string) => void
+  onFilterChange: (
+    key: keyof TFilterValues,
+    value: string | null,
+    isUrlState: boolean
+  ) => void
   values: Partial<TFilterValues>
   filterSections: TFilterSection[]
 }
@@ -50,7 +54,7 @@ export const AppliedFilters = ({
             iconSize="sm"
             className="h-5 w-5 -mr-1.5 hover:bg-transparent hover:text-destructive"
             onClick={() => {
-              onFilterChange(filter.name as keyof TFilterValues, "")
+              onFilterChange(filter.name as keyof TFilterValues, null, true)
             }}
           >
             <span className="sr-only">Remove {filter.displayName} filter</span>
