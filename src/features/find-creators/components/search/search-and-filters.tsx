@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { parseAsString, useQueryStates } from "nuqs"
-import { ChevronDown } from "lucide-react"
 
 import type { TFilterValues, TSearchState } from "./types"
 
@@ -10,6 +9,7 @@ import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { DynamicIcon } from "@/components/dynamic-icon"
 import { filterSections, matchInOptions } from "./data"
 import { Filters } from "./filters"
 import { Search } from "./search"
@@ -20,7 +20,7 @@ const SearchAndFilters = () => {
   // URL state with nuqs
   const [searchUrlState, setSearchUrlState] = useQueryStates({
     query: parseAsString.withDefault(""),
-    matchIn: parseAsString.withDefault("all"),
+    matchIn: parseAsString.withDefault("creators"),
   })
 
   // Create parsers for each filter
@@ -84,7 +84,8 @@ const SearchAndFilters = () => {
             onClick={() => setIsFiltersOpen(!isFiltersOpen)}
           >
             {isFiltersOpen ? "Hide Filters" : "Show Filters"}
-            <ChevronDown
+            <DynamicIcon
+              name="ChevronDown"
               className={cn(
                 "transition-transform duration-200",
                 isFiltersOpen && "rotate-180"

@@ -6,7 +6,6 @@ import type { ColumnDef } from "@tanstack/react-table"
 
 import { useDataTable } from "@/components/ui/table/hooks/use-data-table"
 import { DataTable } from "@/components/ui/table/main-data-table/data-table"
-import { DataTableToolbar } from "@/components/ui/table/main-data-table/data-table-toolbar"
 
 interface InfluencersTableParams<TData, TValue> {
   data: TData[]
@@ -32,7 +31,7 @@ export function InfluencersTable<TData, TValue>({
 
   return (
     <DataTable table={table}>
-      <DataTableToolbar table={table} />
+      {/* <DataTableViewOptions table={table} /> */}
     </DataTable>
   )
 }
