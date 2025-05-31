@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { X } from "lucide-react"
 
 import type { TFilterSection, TFilterValues } from "./types"
 
@@ -41,26 +40,19 @@ export const AppliedFilters = ({
   return (
     <div className="flex flex-wrap items-center gap-2 p-2">
       {appliedFilters.map((filter) => (
-        <Badge
-          key={`${filter.name}-${filter.label}`}
-          variant="outline"
-          className="flex items-center gap-1.5 py-1.5 px-3 rounded-md border-border/50 bg-muted/50 hover:bg-muted/70 transition-colors"
-        >
-          <span className="font-medium text-foreground/80">
-            {filter.displayName}:
-          </span>
-          <span className="font-normal">{filter.label}</span>
+        <Badge key={`${filter.name}-${filter.label}`} variant="secondary">
+          {filter.displayName}:{filter.label}
           <Button
             type="button"
             variant="ghost"
             size="icon"
+            startIcon="X"
+            iconSize="sm"
             className="h-5 w-5 -mr-1.5 hover:bg-transparent hover:text-destructive"
-            onClick={(e) => {
-              e.stopPropagation()
+            onClick={() => {
               onFilterChange(filter.name as keyof TFilterValues, "")
             }}
           >
-            <X className="h-3.5 w-3.5" />
             <span className="sr-only">Remove {filter.displayName} filter</span>
           </Button>
         </Badge>
