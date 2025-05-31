@@ -75,7 +75,7 @@ export function Customizer() {
         </Button>
       </SheetTrigger>
       <SheetPortal>
-        <SheetContent className="p-0" side="end">
+        <SheetContent className="p-0" side="right">
           <ScrollArea className="h-full p-4">
             <div className="flex flex-1 flex-col space-y-4">
               <SheetHeader>

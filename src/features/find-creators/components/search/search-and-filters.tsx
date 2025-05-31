@@ -12,6 +12,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { DynamicIcon } from "@/components/dynamic-icon"
 import { filterSections, matchInOptions } from "./data"
 import { Filters } from "./filters"
+import { FiltersSheet } from "./filters-sheet"
 import { Search } from "./search"
 
 const SearchAndFilters = () => {
@@ -92,6 +93,8 @@ const SearchAndFilters = () => {
               )}
             />
           </Button>
+
+          <FiltersSheet />
         </div>
 
         <div
