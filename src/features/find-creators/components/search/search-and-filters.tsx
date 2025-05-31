@@ -16,7 +16,7 @@ import { FiltersSheet } from "./filters-sheet"
 import { Search } from "./search"
 
 const SearchAndFilters = () => {
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false)
+  const [isFiltersOpen, setIsFiltersOpen] = useState(true)
 
   // URL state with nuqs
   const [searchUrlState, setSearchUrlState] = useQueryStates({
@@ -129,11 +129,17 @@ const SearchAndFilters = () => {
             isFiltersOpen ? "" : "hidden "
           )}
         >
-          <AppliedFilters
-            onFilterChange={handleFilterChange}
-            appliedFilters={filtersUrlState}
-            allFilters={filterSections}
-          />
+          {Object.values(filtersUrlState).some((v) => v != null) ? (
+            <AppliedFilters
+              onFilterChange={handleFilterChange}
+              appliedFilters={filtersUrlState}
+              allFilters={filterSections}
+            />
+          ) : (
+            <div className="h-20 flex items-center justify-center text-xs ">
+              No filters applied
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>
