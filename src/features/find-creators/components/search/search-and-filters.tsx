@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DynamicIcon } from "@/components/dynamic-icon"
 import { filterSections, matchInOptions } from "./data"
-import { Filters } from "./filters"
 import { FiltersSheet } from "./filters-sheet"
 import { Search } from "./search"
 
@@ -88,12 +87,14 @@ const SearchAndFilters = () => {
             matchInOptions={matchInOptions}
           />
           <Button
-            variant="secondary"
+            variant="outline"
+            className="px-2 rounded-full py-[2px] h-auto font-semibold text-[12px] absolute left-1/2 translate-y-1/2 bottom-0 -translate-x-1/2"
             onClick={() => setIsFiltersOpen(!isFiltersOpen)}
           >
-            {isFiltersOpen ? "Hide Filters" : "Show Filters"}
+            {isFiltersOpen ? "Applied Filters" : "Applied Filters"}
             <DynamicIcon
               name="ChevronDown"
+              size="sm"
               className={cn(
                 "transition-transform duration-200",
                 isFiltersOpen && "rotate-180"
@@ -116,13 +117,7 @@ const SearchAndFilters = () => {
             isFiltersOpen ? "grid-rows-[1fr] py-8" : "grid-rows-[0fr]"
           )}
         >
-          <div className="overflow-scroll">
-            <Filters
-              onFilterChange={handleFilterChange}
-              values={filtersState}
-              filterSections={filterSections}
-            />
-          </div>
+          <div className="overflow-scroll">hie</div>
         </div>
       </CardContent>
     </Card>
