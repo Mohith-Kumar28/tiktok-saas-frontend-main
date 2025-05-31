@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DynamicIcon } from "@/components/dynamic-icon"
+import { AppliedFilters } from "./applied-filters"
 import { filterSections, matchInOptions } from "./data"
 import { FiltersSheet } from "./filters-sheet"
 import { Search } from "./search"
@@ -117,7 +118,11 @@ const SearchAndFilters = () => {
             isFiltersOpen ? "grid-rows-[1fr] py-8" : "grid-rows-[0fr]"
           )}
         >
-          <div className="overflow-scroll">hie</div>
+          <AppliedFilters
+            onFilterChange={handleFilterChange}
+            values={filtersState}
+            filterSections={filterSections}
+          />
         </div>
       </CardContent>
     </Card>
