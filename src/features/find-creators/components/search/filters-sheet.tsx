@@ -1,9 +1,11 @@
+import React, { useState } from "react"
+
+import type { TFilterSection, TFilterValues } from "./types"
+
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -11,35 +13,60 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { Filters } from "./filters"
 
-export function FiltersSheet() {
+interface FiltersProps {
+  handleFilterSave?: () => void
+  handleFilterChange?: (key: string, value: string) => void
+  filtersState: TFilterValues
+  filterSections: TFilterSection[]
+  handleFilterReset?: () => void
+}
+
+export function FiltersSheet({
+  handleFilterSave,
+  handleFilterChange,
+  filtersState,
+  filterSections,
+  handleFilterReset,
+}: FiltersProps) {
+  const [open, setOpen] = useState(false)
+
+  const handleSaveAndClose = () => {
+    if (handleFilterSave) handleFilterSave()
+    setOpen(false)
+  }
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button variant="outline">Open</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
+          <SheetTitle>Filters</SheetTitle>
           <SheetDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
+            Filters are applied to the search results. You can clear all filters
+            by clicking the &quot;Clear all&quot; button.
           </SheetDescription>
         </SheetHeader>
-        <div className="grid flex-1 auto-rows-min gap-6 px-4">
-          <div className="grid gap-3">
-            <Label htmlFor="sheet-demo-name">Name</Label>
-            <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="sheet-demo-username">Username</Label>
-            <Input id="sheet-demo-username" defaultValue="@peduarte" />
-          </div>
-        </div>
+
+        <ScrollArea className="px-4 h-[calc(100dvh-7rem)]">
+          <Filters
+            onFilterChange={handleFilterChange}
+            values={filtersState}
+            filterSections={filterSections}
+          />
+        </ScrollArea>
+
         <SheetFooter>
-          <Button type="submit">Save changes</Button>
-          <SheetClose asChild>
-            <Button variant="outline">Close</Button>
-          </SheetClose>
+          <Button type="submit" onClick={handleSaveAndClose}>
+            Save changes
+          </Button>
+
+          <Button variant="outline" onClick={handleFilterReset}>
+            Reset
+          </Button>
         </SheetFooter>
       </SheetContent>
     </Sheet>

@@ -47,6 +47,10 @@ const SearchAndFilters = () => {
     // Update URL state for both search and filters
     setSearchUrlState(newSearchState)
 
+    // You can add additional logic here like triggering a search API call
+  }
+
+  const handleFilterSave = () => {
     // Convert filter values to match URL state structure
     const filterUrlValues = Object.entries(filtersState).reduce(
       (acc, [key, value]) => {
@@ -59,8 +63,6 @@ const SearchAndFilters = () => {
     )
 
     setFiltersUrlState(filterUrlValues)
-
-    // You can add additional logic here like triggering a search API call
   }
 
   const handleFilterChange = (key: string, value: string) => {
@@ -69,6 +71,10 @@ const SearchAndFilters = () => {
       ...prev,
       [key]: value,
     }))
+  }
+
+  const handleFilterReset = () => {
+    setFiltersState({})
   }
 
   return (
@@ -94,7 +100,13 @@ const SearchAndFilters = () => {
             />
           </Button>
 
-          <FiltersSheet />
+          <FiltersSheet
+            handleFilterSave={handleFilterSave}
+            handleFilterChange={handleFilterChange}
+            filtersState={filtersState}
+            filterSections={filterSections}
+            handleFilterReset={handleFilterReset}
+          />
         </div>
 
         <div

@@ -5,6 +5,12 @@ import React from "react"
 import type { TFilterSection, TFilterValues, TOption } from "./types"
 
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -50,27 +56,24 @@ export const Filters = ({
   )
 
   return (
-    <div className="space-y-6">
+    <Accordion type="single" collapsible className="space-y-2">
       {filterSections.map((section) => (
-        <div
-          key={section.title}
-          className="grid grid-cols-[200px_1fr] items-center gap-6"
-        >
-          <h3 className="text-muted-foreground text-sm font-medium">
-            {section.title}
-          </h3>
-          <div className={`grid grid-cols-${section.columns} gap-4`}>
-            {section.filters.map((filter) => (
-              <FilterSelect
-                key={filter.name}
-                name={filter.name}
-                options={filter.options}
-                placeholder={filter.placeholder}
-              />
-            ))}
-          </div>
-        </div>
+        <AccordionItem key={section.title} value={section.title}>
+          <AccordionTrigger>{section.title}</AccordionTrigger>
+          <AccordionContent>
+            <div className="flex flex-col space-y-4">
+              {section.filters.map((filter) => (
+                <FilterSelect
+                  key={filter.name}
+                  name={filter.name}
+                  options={filter.options}
+                  placeholder={filter.placeholder}
+                />
+              ))}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
       ))}
-    </div>
+    </Accordion>
   )
 }
