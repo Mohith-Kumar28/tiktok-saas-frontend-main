@@ -5,13 +5,14 @@ import { parseAsString, useQueryStates } from "nuqs"
 
 import type { TFilterValues, TSearchState } from "./types"
 
+import { filterSections, matchInOptions } from "../../data/data"
+
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DynamicIcon } from "@/components/dynamic-icon"
 import { AppliedFilters } from "./applied-filters"
-import { filterSections, matchInOptions } from "./data"
 import { FiltersSheet } from "./filters-sheet"
 import { Search } from "./search"
 

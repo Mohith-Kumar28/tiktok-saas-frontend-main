@@ -1,4 +1,4 @@
-import type { TFilterSection, TOption } from "./types"
+import type { TFilterSection, TOption } from "../components/search/types"
 
 // Search options
 export const matchInOptions: TOption[] = [
