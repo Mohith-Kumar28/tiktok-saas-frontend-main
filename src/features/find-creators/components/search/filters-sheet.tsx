@@ -13,7 +13,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { DynamicIcon } from "@/components/dynamic-icon"
 import { Filters } from "./filters"
 
 interface FiltersProps {
@@ -41,8 +40,8 @@ export function FiltersSheet({
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="secondary">
-          <DynamicIcon name="Filter" /> Filters
+        <Button variant="secondary" startIcon="Filter">
+          Filters
         </Button>
       </SheetTrigger>
       <SheetContent>

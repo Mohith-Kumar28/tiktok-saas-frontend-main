@@ -2,11 +2,13 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva } from "class-variance-authority"
 import { LoaderCircle } from "lucide-react"
 
-import type { IconType } from "@/types/types"
+import type { DynamicIconNameType, IconType } from "@/types/types"
 import type { VariantProps } from "class-variance-authority"
 import type { ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
+
+import { DynamicIcon } from "@/components/dynamic-icon"
 
 export const buttonVariants = cva(
   "inline-flex items-center gap-1.5 justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
@@ -41,6 +43,9 @@ interface ButtonProps
   extends ComponentProps<"button">,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  startIcon?: DynamicIconNameType
+  endIcon?: DynamicIconNameType
+  iconSize?: "xs" | "sm" | "base" | "lg" | "md"
 }
 
 export function Button({
@@ -48,16 +53,34 @@ export function Button({
   variant,
   size,
   asChild = false,
+  startIcon,
+  endIcon,
+  iconSize = "base",
+  children,
   ...props
 }: ButtonProps) {
   const Comp = asChild ? Slot : "button"
+  const hasStartIcon = !!startIcon
+  const hasEndIcon = !!endIcon
+  const hasIcons = hasStartIcon || hasEndIcon
 
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        hasIcons && "gap-1.5"
+      )}
       {...props}
-    />
+    >
+      {startIcon && (
+        <DynamicIcon name={startIcon} size={iconSize} className="shrink-0" />
+      )}
+      {children}
+      {endIcon && (
+        <DynamicIcon name={endIcon} size={iconSize} className="shrink-0" />
+      )}
+    </Comp>
   )
 }
 
