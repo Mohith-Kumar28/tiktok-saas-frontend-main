@@ -1,14 +1,19 @@
-export interface TFilterValues {
-  gender?: string
-  age?: string
-  videos?: string
-  avgViews?: string
-  engagementRate?: string
-  categories?: string
-  gmv?: string
-  itemsSold?: string
-  gpm?: string
-}
+import { z } from "zod"
+
+export const filterValuesSchema = z.object({
+  gender: z.string().optional(),
+  age: z.string().optional(),
+  videos: z.string().optional(),
+  avgViews: z.string().optional(),
+  engagementRate: z.string().optional(),
+  categories: z.string().optional(),
+  gmv: z.string().optional(),
+  itemsSold: z.string().optional(),
+  gpm: z.string().optional(),
+})
+
+// Get the TypeScript type from the schema
+export type TFilterValues = z.infer<typeof filterValuesSchema>
 
 export interface TOption {
   value: string

@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { parseAsString, useQueryStates } from "nuqs"
+import { parseAsJson, parseAsString, useQueryState, useQueryStates } from "nuqs"
 
 import type { TFilterValues, TSearchState } from "./types"
+import { filterValuesSchema } from "./types"
 
 import { filterSections, matchInOptions } from "../../data/data"
 
@@ -26,13 +27,11 @@ const SearchAndFilters = () => {
   })
 
   // Create parsers for each filter
-  const filterParsers = Object.fromEntries(
-    filterSections.flatMap((section) =>
-      section.filters.map((filter) => [filter.name, parseAsString])
-    )
-  )
 
-  const [filtersUrlState, setFiltersUrlState] = useQueryStates(filterParsers)
+  const [filtersUrlState, setFiltersUrlState] = useQueryState(
+    "filters",
+    parseAsJson(filterValuesSchema.parse).withDefault({})
+  )
 
   // Local state for form values
   const [searchState, setSearchState] = useState<TSearchState>(searchUrlState)
