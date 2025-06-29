@@ -26,8 +26,6 @@ const SearchAndFilters = () => {
     matchIn: parseAsString.withDefault("creators"),
   })
 
-  // Create parsers for each filter
-
   const [filtersUrlState, setFiltersUrlState] = useQueryState(
     "filters",
     parseAsJson(filterValuesSchema.parse).withDefault({})
@@ -35,9 +33,6 @@ const SearchAndFilters = () => {
 
   // Local state for form values
   const [searchState, setSearchState] = useState<TSearchState>(searchUrlState)
-  const [filtersState, setFiltersState] = useState<TFilterValues>(
-    filtersUrlState as TFilterValues
-  )
 
   const handleSearch = (query: string, matchIn: string) => {
     // Update local state
@@ -50,9 +45,9 @@ const SearchAndFilters = () => {
     // You can add additional logic here like triggering a search API call
   }
 
-  const handleFilterSave = () => {
+  const handleFilterSave = (filterValues: TFilterValues) => {
     // Convert filter values to match URL state structure
-    const filterUrlValues = Object.entries(filtersState).reduce(
+    const filterUrlValues = Object.entries(filterValues).reduce(
       (acc, [key, value]) => {
         if (value) {
           acc[key] = value
@@ -65,27 +60,29 @@ const SearchAndFilters = () => {
     setFiltersUrlState(filterUrlValues)
   }
 
-  const handleFilterChange = (
-    key: string,
-    value: string | null,
-    isUrlState: boolean = false
-  ) => {
-    // Only update local state
-    setFiltersState((prev) => ({
-      ...prev,
+  const handleFilterChange = (key: string, value: string | null) => {
+    // Update applied filters immediately when called from AppliedFilters
+    const currentFilters = filtersUrlState as TFilterValues
+    const updatedFilters = {
+      ...currentFilters,
       [key]: value,
-    }))
-
-    if (isUrlState) {
-      setFiltersUrlState((prev) => ({
-        ...prev,
-        [key]: value,
-      }))
     }
+
+    // Remove empty values
+    const cleanedFilters = Object.entries(updatedFilters).reduce(
+      (acc, [k, v]) => {
+        if (v) {
+          acc[k] = v
+        }
+        return acc
+      },
+      {} as Record<string, string>
+    )
+
+    setFiltersUrlState(cleanedFilters)
   }
 
   const handleFilterReset = () => {
-    setFiltersState({})
     setFiltersUrlState(null)
   }
 
@@ -115,11 +112,10 @@ const SearchAndFilters = () => {
           </Button>
 
           <FiltersSheet
-            handleFilterSave={handleFilterSave}
-            handleFilterChange={handleFilterChange}
-            filtersState={filtersState}
+            onFilterSave={handleFilterSave}
+            onFilterReset={handleFilterReset}
             filterSections={filterSections}
-            handleFilterReset={handleFilterReset}
+            appliedFilters={filtersUrlState as TFilterValues}
           />
         </div>
 

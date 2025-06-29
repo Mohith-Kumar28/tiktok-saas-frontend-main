@@ -1,8 +1,12 @@
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
+import { useForm } from "react-hook-form"
 
 import type { TFilterSection, TFilterValues } from "./types"
 
+import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Sheet,
@@ -13,36 +17,100 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { DynamicIcon } from "@/components/dynamic-icon"
 import { Filters } from "./filters"
 
 interface FiltersProps {
-  handleFilterSave?: () => void
-  handleFilterChange?: (key: string, value: string) => void
-  filtersState: TFilterValues
+  onFilterSave: (filterValues: TFilterValues) => void
+  onFilterReset: () => void
   filterSections: TFilterSection[]
-  handleFilterReset?: () => void
+  appliedFilters: TFilterValues
 }
 
 export function FiltersSheet({
-  handleFilterSave,
-  handleFilterChange,
-  filtersState,
+  onFilterSave,
+  onFilterReset,
   filterSections,
-  handleFilterReset,
+  appliedFilters,
 }: FiltersProps) {
   const [open, setOpen] = useState(false)
 
+  const form = useForm<TFilterValues>({
+    defaultValues: appliedFilters,
+  })
+
+  // Reset form when appliedFilters change (e.g., when filters are applied or reset)
+  React.useEffect(() => {
+    form.reset(appliedFilters)
+  }, [appliedFilters, form])
+
+  // Watch form values
+  const watchedValues = form.watch()
+
+  // Calculate if there are unsaved changes
+  const hasUnsavedChanges = useMemo(() => {
+    // Convert both objects to strings for efficient comparison
+    const appliedFiltersString = JSON.stringify(appliedFilters)
+    const formValuesString = JSON.stringify(watchedValues)
+
+    return appliedFiltersString !== formValuesString
+  }, [appliedFilters, watchedValues])
+
   const handleSaveAndClose = () => {
-    if (handleFilterSave) handleFilterSave()
+    const formValues = form.getValues()
+    onFilterSave(formValues)
     setOpen(false)
   }
 
+  const handleSheetOpenChange = (isOpen: boolean) => {
+    setOpen(isOpen)
+    // Don't reset on close - keep unsaved changes to show the alert
+  }
+
+  const handleResetClick = () => {
+    onFilterReset()
+    form.reset({})
+  }
+
+  const handleFilterChange = (key: string, value: string) => {
+    form.setValue(key as keyof TFilterValues, value, { shouldValidate: true })
+  }
+
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet open={open} onOpenChange={handleSheetOpenChange}>
       <SheetTrigger asChild>
-        <Button variant="secondary" startIcon="Filter">
-          Filters
-        </Button>
+        <div className="relative">
+          <Button
+            variant="secondary"
+            startIcon="Filter"
+            className={cn(
+              "transition-colors",
+              hasUnsavedChanges && "border-2 border-primary border-solid"
+            )}
+          >
+            Filters
+          </Button>
+          {hasUnsavedChanges && (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="absolute -top-2 -right-2 bg-primary rounded-full p-1 cursor-help">
+                    <DynamicIcon name="Info" size="sm" className="text-white" />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>You have unsaved filter changes</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
+        </div>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
@@ -53,20 +121,26 @@ export function FiltersSheet({
           </SheetDescription>
         </SheetHeader>
 
-        <ScrollArea className="px-4 h-[calc(100dvh-7rem)]">
-          <Filters
-            onFilterChange={handleFilterChange}
-            values={filtersState}
-            filterSections={filterSections}
-          />
-        </ScrollArea>
+        <Form {...form}>
+          <ScrollArea className="px-4 h-[calc(100dvh-7rem)]">
+            <Filters
+              onFilterChange={handleFilterChange}
+              values={form.watch()}
+              filterSections={filterSections}
+            />
+          </ScrollArea>
+        </Form>
 
         <SheetFooter>
-          <Button type="submit" onClick={handleSaveAndClose}>
+          <Button
+            type="submit"
+            onClick={handleSaveAndClose}
+            disabled={!hasUnsavedChanges}
+          >
             Save changes
           </Button>
 
-          <Button variant="outline" onClick={handleFilterReset}>
+          <Button variant="outline" onClick={handleResetClick}>
             Reset
           </Button>
         </SheetFooter>
