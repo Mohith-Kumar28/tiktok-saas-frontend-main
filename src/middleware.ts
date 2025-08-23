@@ -10,7 +10,7 @@ import {
   getPreferredLocale,
   isPathnameMissingLocale,
 } from "@/lib/i18n"
-import { ensureWithoutPrefix } from "@/lib/utils"
+import { ensureRedirectPathname, ensureWithoutPrefix } from "@/lib/utils"
 
 function redirect(pathname: string, request: NextRequest) {
   const { search, hash } = request.nextUrl
@@ -43,7 +43,7 @@ export async function middleware(request: NextRequest) {
     const token = await getToken({ req: request })
     const isAuthenticated = !!token
     const isGuest = isGuestRoute(pathnameWithoutLocale)
-    // const isProtected = !isGuest
+    const isProtected = !isGuest
 
     // Redirect authenticated users away from guest routes
     if (isAuthenticated && isGuest) {
@@ -51,16 +51,16 @@ export async function middleware(request: NextRequest) {
     }
 
     // Redirect unauthenticated users from protected routes to sign-in
-    // if (!isAuthenticated && isProtected) {
-    //   let redirectPathname = "/sign-in"
+    if (!isAuthenticated && isProtected) {
+      let redirectPathname = "/sign-in"
 
-    //   // Maintain the original path for redirection
-    //   if (pathnameWithoutLocale !== "") {
-    //     redirectPathname = ensureRedirectPathname(redirectPathname, pathname)
-    //   }
+      // Maintain the original path for redirection
+      if (pathnameWithoutLocale !== "") {
+        redirectPathname = ensureRedirectPathname(redirectPathname, pathname)
+      }
 
-    //   return redirect(redirectPathname, request)
-    // }
+      return redirect(redirectPathname, request)
+    }
   }
 
   // Redirect to localized URL if the pathname is missing a locale

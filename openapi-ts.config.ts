@@ -7,7 +7,7 @@ import "dotenv/config"
 
 import fetch from "node-fetch" // Node ≤ 20
 
-const API_URL = process.env.API_URL
+const API_URL = process.env.BACKEND_API_URL
 const BASIC_AUTH_USERNAME = process.env.BASIC_AUTH_USERNAME
 const BASIC_AUTH_PASSWORD = process.env.BASIC_AUTH_PASSWORD
 
