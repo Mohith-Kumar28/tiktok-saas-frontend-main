@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 
 import { SettingsProvider } from "@/contexts/settings-context"
 import { SidebarProvider } from "@/components/ui/sidebar"
+import QueryProvider from "./QueryProvider"
 import { DirectionProvider } from "./direction-provider"
 import { ModeProvider } from "./mode-provider"
 import { NextAuthProvider } from "./next-auth-provider"
@@ -28,7 +29,9 @@ export function Providers({
           <NuqsProvider>
             <DirectionProvider direction={direction}>
               <NextAuthProvider session={session}>
-                <SidebarProvider>{children}</SidebarProvider>
+                <QueryProvider>
+                  <SidebarProvider>{children}</SidebarProvider>
+                </QueryProvider>
               </NextAuthProvider>
             </DirectionProvider>
           </NuqsProvider>

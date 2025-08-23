@@ -29,9 +29,15 @@ yarn-error.log*
 .env*.local
 .env
 
+# generated openapi schema
+openapi-schema.json
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# openapi-ts-logs
+openapi-ts-error*.log
