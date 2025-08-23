@@ -40,8 +40,8 @@ export async function middleware(request: NextRequest) {
 
   // Handle authentication for protected and guest routes
   if (isNotPublic) {
-    const token = await getCookieCache(request)
-
+    const token = true
+    console.log("token", await getCookieCache(request))
     const isAuthenticated = !!token
 
     const isGuest = isGuestRoute(pathnameWithoutLocale)

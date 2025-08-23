@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { signOut } from "next-auth/react"
+// import { signOut } from "next-auth/react"
 import { LogOut, User, UserCog } from "lucide-react"
 
 import type { DictionaryType } from "@/lib/get-dictionary"
@@ -81,7 +81,7 @@ export function UserDropdown({
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut()}>
+        <DropdownMenuItem onClick={() => {}}>
           <LogOut className="me-2 size-4" />
           {dictionary.navigation.userNav.signOut}
         </DropdownMenuItem>
