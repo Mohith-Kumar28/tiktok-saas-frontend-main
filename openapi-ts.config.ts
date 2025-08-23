@@ -7,9 +7,9 @@ import "dotenv/config"
 
 import fetch from "node-fetch" // Node ≤ 20
 
-const API_URL = "http://localhost:8000"
-const BASIC_AUTH_USERNAME = "admin"
-const BASIC_AUTH_PASSWORD = "admin-password"
+const API_URL = process.env.API_URL
+const BASIC_AUTH_USERNAME = process.env.BASIC_AUTH_USERNAME
+const BASIC_AUTH_PASSWORD = process.env.BASIC_AUTH_PASSWORD
 
 const base64Credential = Buffer.from(
   `${BASIC_AUTH_USERNAME}:${BASIC_AUTH_PASSWORD}`
