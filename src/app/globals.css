@@ -3,6 +3,8 @@
 @plugin "@tailwindcss/typography";
 @import "./themes.css";
 
+@import "@daveyplate/better-auth-ui/css";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

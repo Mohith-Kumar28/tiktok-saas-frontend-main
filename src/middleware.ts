@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { getToken } from "next-auth/jwt"
+import { getCookieCache } from "better-auth/cookies"
 
 import type { NextRequest } from "next/server"
 
@@ -33,15 +33,17 @@ function redirect(pathname: string, request: NextRequest) {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  console.log(pathname)
+
   const locale = getLocaleFromPathname(pathname)
   const pathnameWithoutLocale = ensureWithoutPrefix(pathname, `/${locale}`)
   const isNotPublic = !isPublicRoute(pathnameWithoutLocale)
 
   // Handle authentication for protected and guest routes
   if (isNotPublic) {
-    const token = await getToken({ req: request })
+    const token = await getCookieCache(request)
+
     const isAuthenticated = !!token
+
     const isGuest = isGuestRoute(pathnameWithoutLocale)
     const isProtected = !isGuest
 
@@ -52,9 +54,8 @@ export async function middleware(request: NextRequest) {
 
     // Redirect unauthenticated users from protected routes to sign-in
     if (!isAuthenticated && isProtected) {
-      let redirectPathname = "/sign-in"
-
-      // Maintain the original path for redirection
+      let redirectPathname = "/auth/sign-in"
+      // Maintain the original path for redirection, but avoid redirecting to sign-in itself
       if (pathnameWithoutLocale !== "") {
         redirectPathname = ensureRedirectPathname(redirectPathname, pathname)
       }
