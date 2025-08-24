@@ -23,7 +23,7 @@ export function NotFound404() {
         We couldn&apos;t find the page you&apos;re looking for. It might have
         been moved or doesn&apos;t exist.
       </p>
-      <Button size="lg" asChild>
+      <Button size="lg">
         <Link href="/">Home Page</Link>
       </Button>
     </div>

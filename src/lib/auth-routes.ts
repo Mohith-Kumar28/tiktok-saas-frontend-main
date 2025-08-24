@@ -1,7 +1,23 @@
 import { routeMap } from "@/configs/auth-routes"
 
 const getBasePath = (route: string): string => {
-  // Extract the base path (e.g., "/user" from "/user/profile")
+  // First, check if the exact route exists in the routeMap
+  if (routeMap.has(route)) {
+    return route
+  }
+
+  // If not, try to find the longest matching prefix
+  const routeKeys = Array.from(routeMap.keys())
+  const matchingRoutes = routeKeys.filter((key) => route.startsWith(key))
+
+  if (matchingRoutes.length > 0) {
+    // Return the longest matching route
+    return matchingRoutes.reduce((longest, current) =>
+      current.length > longest.length ? current : longest
+    )
+  }
+
+  // Fallback: extract base path using slash logic for unmapped routes
   const secondSlash = route.indexOf("/", 1)
   return secondSlash === -1 ? route : route.substring(0, secondSlash)
 }
