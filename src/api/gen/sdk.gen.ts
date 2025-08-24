@@ -11,6 +11,23 @@ import type {
   HealthControllerCheckResponses,
   PrometheusControllerIndexData,
   PrometheusControllerIndexResponses,
+  TikTokControllerDisconnectShopData,
+  TikTokControllerDisconnectShopErrors,
+  TikTokControllerDisconnectShopResponses,
+  TikTokControllerGetAuthStatusData,
+  TikTokControllerGetAuthStatusResponses,
+  TikTokControllerGetShopInfoData,
+  TikTokControllerGetShopInfoErrors,
+  TikTokControllerGetShopInfoResponses,
+  TikTokControllerHandleCallbackData,
+  TikTokControllerHandleCallbackErrors,
+  TikTokControllerHandleCallbackResponses,
+  TikTokControllerInitiateAuthData,
+  TikTokControllerInitiateAuthErrors,
+  TikTokControllerInitiateAuthResponses,
+  TikTokControllerRefreshTokenData,
+  TikTokControllerRefreshTokenErrors,
+  TikTokControllerRefreshTokenResponses,
   UserControllerDeleteUserData,
   UserControllerDeleteUserErrors,
   UserControllerDeleteUserResponses,
@@ -277,5 +294,148 @@ export const fileControllerUploadFiles = <ThrowOnError extends boolean = false>(
       "Content-Type": null,
       ...options.headers,
     },
+  })
+}
+
+/**
+ * Initiate TikTok Shop authorization
+ */
+export const tikTokControllerInitiateAuth = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<TikTokControllerInitiateAuthData, ThrowOnError>
+) => {
+  return (options?.client ?? _heyApiClient).get<
+    TikTokControllerInitiateAuthResponses,
+    TikTokControllerInitiateAuthErrors,
+    ThrowOnError
+  >({
+    security: [
+      {
+        scheme: "bearer",
+        type: "http",
+      },
+    ],
+    url: "/api/v1/tiktok/auth/initiate",
+    ...options,
+  })
+}
+
+/**
+ * Handle TikTok Shop OAuth callback
+ */
+export const tikTokControllerHandleCallback = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<TikTokControllerHandleCallbackData, ThrowOnError>
+) => {
+  return (options.client ?? _heyApiClient).post<
+    TikTokControllerHandleCallbackResponses,
+    TikTokControllerHandleCallbackErrors,
+    ThrowOnError
+  >({
+    security: [
+      {
+        scheme: "bearer",
+        type: "http",
+      },
+    ],
+    url: "/api/v1/tiktok/auth/callback",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  })
+}
+
+/**
+ * Get connected TikTok Shop information
+ */
+export const tikTokControllerGetShopInfo = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<TikTokControllerGetShopInfoData, ThrowOnError>
+) => {
+  return (options?.client ?? _heyApiClient).get<
+    TikTokControllerGetShopInfoResponses,
+    TikTokControllerGetShopInfoErrors,
+    ThrowOnError
+  >({
+    security: [
+      {
+        scheme: "bearer",
+        type: "http",
+      },
+    ],
+    url: "/api/v1/tiktok/shop/info",
+    ...options,
+  })
+}
+
+/**
+ * Disconnect TikTok Shop
+ */
+export const tikTokControllerDisconnectShop = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<TikTokControllerDisconnectShopData, ThrowOnError>
+) => {
+  return (options?.client ?? _heyApiClient).delete<
+    TikTokControllerDisconnectShopResponses,
+    TikTokControllerDisconnectShopErrors,
+    ThrowOnError
+  >({
+    security: [
+      {
+        scheme: "bearer",
+        type: "http",
+      },
+    ],
+    url: "/api/v1/tiktok/shop/disconnect",
+    ...options,
+  })
+}
+
+/**
+ * Refresh TikTok Shop access token
+ */
+export const tikTokControllerRefreshToken = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<TikTokControllerRefreshTokenData, ThrowOnError>
+) => {
+  return (options?.client ?? _heyApiClient).post<
+    TikTokControllerRefreshTokenResponses,
+    TikTokControllerRefreshTokenErrors,
+    ThrowOnError
+  >({
+    security: [
+      {
+        scheme: "bearer",
+        type: "http",
+      },
+    ],
+    url: "/api/v1/tiktok/auth/refresh",
+    ...options,
+  })
+}
+
+/**
+ * Get authorization status
+ * Check if user has an active TikTok Shop connection
+ */
+export const tikTokControllerGetAuthStatus = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<TikTokControllerGetAuthStatusData, ThrowOnError>
+) => {
+  return (options?.client ?? _heyApiClient).get<
+    TikTokControllerGetAuthStatusResponses,
+    unknown,
+    ThrowOnError
+  >({
+    url: "/api/v1/tiktok/auth/status",
+    ...options,
   })
 }

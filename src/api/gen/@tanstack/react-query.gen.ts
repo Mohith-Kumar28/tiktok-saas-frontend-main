@@ -11,6 +11,17 @@ import type {
   FileControllerUploadFilesResponse,
   HealthControllerCheckData,
   PrometheusControllerIndexData,
+  TikTokControllerDisconnectShopData,
+  TikTokControllerDisconnectShopError,
+  TikTokControllerGetAuthStatusData,
+  TikTokControllerGetShopInfoData,
+  TikTokControllerHandleCallbackData,
+  TikTokControllerHandleCallbackError,
+  TikTokControllerHandleCallbackResponse,
+  TikTokControllerInitiateAuthData,
+  TikTokControllerRefreshTokenData,
+  TikTokControllerRefreshTokenError,
+  TikTokControllerRefreshTokenResponse,
   UserControllerDeleteUserData,
   UserControllerDeleteUserError,
   UserControllerFindAllUsersCursorData,
@@ -30,6 +41,12 @@ import {
   fileControllerUploadFiles,
   healthControllerCheck,
   prometheusControllerIndex,
+  tikTokControllerDisconnectShop,
+  tikTokControllerGetAuthStatus,
+  tikTokControllerGetShopInfo,
+  tikTokControllerHandleCallback,
+  tikTokControllerInitiateAuth,
+  tikTokControllerRefreshToken,
   userControllerDeleteUser,
   userControllerFindAllUsers,
   userControllerFindAllUsersCursor,
@@ -463,4 +480,206 @@ export const fileControllerUploadFilesMutation = (
     },
   }
   return mutationOptions
+}
+
+export const tikTokControllerInitiateAuthQueryKey = (
+  options?: Options<TikTokControllerInitiateAuthData>
+) => createQueryKey("tikTokControllerInitiateAuth", options)
+
+/**
+ * Initiate TikTok Shop authorization
+ */
+export const tikTokControllerInitiateAuthOptions = (
+  options?: Options<TikTokControllerInitiateAuthData>
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await tikTokControllerInitiateAuth({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      })
+      return data
+    },
+    queryKey: tikTokControllerInitiateAuthQueryKey(options),
+  })
+}
+
+export const tikTokControllerHandleCallbackQueryKey = (
+  options: Options<TikTokControllerHandleCallbackData>
+) => createQueryKey("tikTokControllerHandleCallback", options)
+
+/**
+ * Handle TikTok Shop OAuth callback
+ */
+export const tikTokControllerHandleCallbackOptions = (
+  options: Options<TikTokControllerHandleCallbackData>
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await tikTokControllerHandleCallback({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      })
+      return data
+    },
+    queryKey: tikTokControllerHandleCallbackQueryKey(options),
+  })
+}
+
+/**
+ * Handle TikTok Shop OAuth callback
+ */
+export const tikTokControllerHandleCallbackMutation = (
+  options?: Partial<Options<TikTokControllerHandleCallbackData>>
+): UseMutationOptions<
+  TikTokControllerHandleCallbackResponse,
+  TikTokControllerHandleCallbackError,
+  Options<TikTokControllerHandleCallbackData>
+> => {
+  const mutationOptions: UseMutationOptions<
+    TikTokControllerHandleCallbackResponse,
+    TikTokControllerHandleCallbackError,
+    Options<TikTokControllerHandleCallbackData>
+  > = {
+    mutationFn: async (localOptions) => {
+      const { data } = await tikTokControllerHandleCallback({
+        ...options,
+        ...localOptions,
+        throwOnError: true,
+      })
+      return data
+    },
+  }
+  return mutationOptions
+}
+
+export const tikTokControllerGetShopInfoQueryKey = (
+  options?: Options<TikTokControllerGetShopInfoData>
+) => createQueryKey("tikTokControllerGetShopInfo", options)
+
+/**
+ * Get connected TikTok Shop information
+ */
+export const tikTokControllerGetShopInfoOptions = (
+  options?: Options<TikTokControllerGetShopInfoData>
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await tikTokControllerGetShopInfo({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      })
+      return data
+    },
+    queryKey: tikTokControllerGetShopInfoQueryKey(options),
+  })
+}
+
+/**
+ * Disconnect TikTok Shop
+ */
+export const tikTokControllerDisconnectShopMutation = (
+  options?: Partial<Options<TikTokControllerDisconnectShopData>>
+): UseMutationOptions<
+  unknown,
+  TikTokControllerDisconnectShopError,
+  Options<TikTokControllerDisconnectShopData>
+> => {
+  const mutationOptions: UseMutationOptions<
+    unknown,
+    TikTokControllerDisconnectShopError,
+    Options<TikTokControllerDisconnectShopData>
+  > = {
+    mutationFn: async (localOptions) => {
+      const { data } = await tikTokControllerDisconnectShop({
+        ...options,
+        ...localOptions,
+        throwOnError: true,
+      })
+      return data
+    },
+  }
+  return mutationOptions
+}
+
+export const tikTokControllerRefreshTokenQueryKey = (
+  options?: Options<TikTokControllerRefreshTokenData>
+) => createQueryKey("tikTokControllerRefreshToken", options)
+
+/**
+ * Refresh TikTok Shop access token
+ */
+export const tikTokControllerRefreshTokenOptions = (
+  options?: Options<TikTokControllerRefreshTokenData>
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await tikTokControllerRefreshToken({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      })
+      return data
+    },
+    queryKey: tikTokControllerRefreshTokenQueryKey(options),
+  })
+}
+
+/**
+ * Refresh TikTok Shop access token
+ */
+export const tikTokControllerRefreshTokenMutation = (
+  options?: Partial<Options<TikTokControllerRefreshTokenData>>
+): UseMutationOptions<
+  TikTokControllerRefreshTokenResponse,
+  TikTokControllerRefreshTokenError,
+  Options<TikTokControllerRefreshTokenData>
+> => {
+  const mutationOptions: UseMutationOptions<
+    TikTokControllerRefreshTokenResponse,
+    TikTokControllerRefreshTokenError,
+    Options<TikTokControllerRefreshTokenData>
+  > = {
+    mutationFn: async (localOptions) => {
+      const { data } = await tikTokControllerRefreshToken({
+        ...options,
+        ...localOptions,
+        throwOnError: true,
+      })
+      return data
+    },
+  }
+  return mutationOptions
+}
+
+export const tikTokControllerGetAuthStatusQueryKey = (
+  options?: Options<TikTokControllerGetAuthStatusData>
+) => createQueryKey("tikTokControllerGetAuthStatus", options)
+
+/**
+ * Get authorization status
+ * Check if user has an active TikTok Shop connection
+ */
+export const tikTokControllerGetAuthStatusOptions = (
+  options?: Options<TikTokControllerGetAuthStatusData>
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await tikTokControllerGetAuthStatus({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      })
+      return data
+    },
+    queryKey: tikTokControllerGetAuthStatusQueryKey(options),
+  })
 }

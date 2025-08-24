@@ -25,7 +25,7 @@ export type ErrorDto = {
 
 export type UserDto = {
   id: string
-  role: "User" | "Admin"
+  role: "USER" | "ADMIN" | "SUPER_ADMIN"
   username: string
   email: string
   firstName?: string
@@ -86,6 +86,74 @@ export type FileDto = {
   mimetype: string
   size: string
   path: string
+}
+
+export type TikTokAuthResponseDto = {
+  /**
+   * Authorization URL to redirect user to
+   */
+  authUrl: string
+  /**
+   * State parameter for CSRF protection
+   */
+  state: string
+}
+
+export type TikTokAuthCallbackDto = {
+  /**
+   * Authorization code from TikTok
+   */
+  code: string
+  /**
+   * State parameter for CSRF protection
+   */
+  state?: string
+  /**
+   * Shop ID from TikTok
+   */
+  shop_id?: string
+  /**
+   * Shop region
+   */
+  shop_region?: string
+}
+
+export type TikTokShopInfoDto = {
+  /**
+   * Shop ID
+   */
+  shopId: string
+  /**
+   * Shop name
+   */
+  shopName?: string
+  /**
+   * Shop region
+   */
+  region: string
+  /**
+   * Whether the shop is currently active
+   */
+  isActive: boolean
+  /**
+   * When the authorization was created
+   */
+  createdAt: string
+  /**
+   * When the authorization was last updated
+   */
+  updatedAt: string
+}
+
+export type RefreshTokenDto = {
+  /**
+   * Success status
+   */
+  success: boolean
+  /**
+   * Message
+   */
+  message: string
 }
 
 export type PrometheusControllerIndexData = {
@@ -536,6 +604,199 @@ export type FileControllerUploadFilesResponses = {
 
 export type FileControllerUploadFilesResponse =
   FileControllerUploadFilesResponses[keyof FileControllerUploadFilesResponses]
+
+export type TikTokControllerInitiateAuthData = {
+  body?: never
+  path?: never
+  query?: never
+  url: "/api/v1/tiktok/auth/initiate"
+}
+
+export type TikTokControllerInitiateAuthErrors = {
+  /**
+   * Bad Request
+   */
+  400: ErrorDto
+  /**
+   * Unauthorized
+   */
+  401: ErrorDto
+  /**
+   * Forbidden
+   */
+  403: ErrorDto
+  /**
+   * Not Found
+   */
+  404: ErrorDto
+  /**
+   * Unprocessable Entity
+   */
+  422: ErrorDto
+  /**
+   * Internal Server Error
+   */
+  500: ErrorDto
+}
+
+export type TikTokControllerInitiateAuthError =
+  TikTokControllerInitiateAuthErrors[keyof TikTokControllerInitiateAuthErrors]
+
+export type TikTokControllerInitiateAuthResponses = {
+  /**
+   * Generate authorization URL for TikTok Shop OAuth flow
+   */
+  200: TikTokAuthResponseDto
+}
+
+export type TikTokControllerInitiateAuthResponse =
+  TikTokControllerInitiateAuthResponses[keyof TikTokControllerInitiateAuthResponses]
+
+export type TikTokControllerHandleCallbackData = {
+  body: TikTokAuthCallbackDto
+  path?: never
+  query?: never
+  url: "/api/v1/tiktok/auth/callback"
+}
+
+export type TikTokControllerHandleCallbackErrors = {
+  /**
+   * Bad Request
+   */
+  400: ErrorDto
+  /**
+   * Unauthorized
+   */
+  401: ErrorDto
+  /**
+   * Forbidden
+   */
+  403: ErrorDto
+  /**
+   * Not Found
+   */
+  404: ErrorDto
+  /**
+   * Unprocessable Entity
+   */
+  422: ErrorDto
+  /**
+   * Internal Server Error
+   */
+  500: ErrorDto
+}
+
+export type TikTokControllerHandleCallbackError =
+  TikTokControllerHandleCallbackErrors[keyof TikTokControllerHandleCallbackErrors]
+
+export type TikTokControllerHandleCallbackResponses = {
+  /**
+   * Process the OAuth callback and exchange code for tokens
+   */
+  200: TikTokShopInfoDto
+}
+
+export type TikTokControllerHandleCallbackResponse =
+  TikTokControllerHandleCallbackResponses[keyof TikTokControllerHandleCallbackResponses]
+
+export type TikTokControllerGetShopInfoData = {
+  body?: never
+  path?: never
+  query?: never
+  url: "/api/v1/tiktok/shop/info"
+}
+
+export type TikTokControllerGetShopInfoErrors = {
+  /**
+   * Not Found
+   */
+  404: ErrorDto
+}
+
+export type TikTokControllerGetShopInfoError =
+  TikTokControllerGetShopInfoErrors[keyof TikTokControllerGetShopInfoErrors]
+
+export type TikTokControllerGetShopInfoResponses = {
+  /**
+   * Retrieve information about the users connected TikTok Shop
+   */
+  200: TikTokShopInfoDto
+}
+
+export type TikTokControllerGetShopInfoResponse =
+  TikTokControllerGetShopInfoResponses[keyof TikTokControllerGetShopInfoResponses]
+
+export type TikTokControllerDisconnectShopData = {
+  body?: never
+  path?: never
+  query?: never
+  url: "/api/v1/tiktok/shop/disconnect"
+}
+
+export type TikTokControllerDisconnectShopErrors = {
+  /**
+   * Not Found
+   */
+  404: ErrorDto
+}
+
+export type TikTokControllerDisconnectShopError =
+  TikTokControllerDisconnectShopErrors[keyof TikTokControllerDisconnectShopErrors]
+
+export type TikTokControllerDisconnectShopResponses = {
+  /**
+   * Remove the connection between user account and TikTok Shop
+   */
+  200: unknown
+}
+
+export type TikTokControllerRefreshTokenData = {
+  body?: never
+  path?: never
+  query?: never
+  url: "/api/v1/tiktok/auth/refresh"
+}
+
+export type TikTokControllerRefreshTokenErrors = {
+  /**
+   * Not Found
+   */
+  404: ErrorDto
+}
+
+export type TikTokControllerRefreshTokenError =
+  TikTokControllerRefreshTokenErrors[keyof TikTokControllerRefreshTokenErrors]
+
+export type TikTokControllerRefreshTokenResponses = {
+  /**
+   * Manually refresh the access token for the connected TikTok Shop
+   */
+  200: RefreshTokenDto
+}
+
+export type TikTokControllerRefreshTokenResponse =
+  TikTokControllerRefreshTokenResponses[keyof TikTokControllerRefreshTokenResponses]
+
+export type TikTokControllerGetAuthStatusData = {
+  body?: never
+  path?: never
+  query?: never
+  url: "/api/v1/tiktok/auth/status"
+}
+
+export type TikTokControllerGetAuthStatusResponses = {
+  /**
+   * Authorization status
+   */
+  200: {
+    isConnected?: boolean
+    shopId?: string | null
+    shopName?: string | null
+  }
+}
+
+export type TikTokControllerGetAuthStatusResponse =
+  TikTokControllerGetAuthStatusResponses[keyof TikTokControllerGetAuthStatusResponses]
 
 export type ClientOptions = {
   baseUrl: "http://localhost:8000" | (string & {})
