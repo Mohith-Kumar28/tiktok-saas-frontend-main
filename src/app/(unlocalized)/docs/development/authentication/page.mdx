@@ -150,7 +150,7 @@ To ensure that specific routes in your Next.js application are only accessible t
 In order to configure route protection, you’ll define the access control rules in the `src/configs/auth-routes.ts` file. Below is an example configuration:
 
 ```ts
-import type { RouteType } from "@/types"
+import type { RouteType } from "@/types/types"
 
 export const routeMap = new Map<string, RouteType>([
   ["/sign-in", { type: "guest" }], // Only unauthenticated users can access sign-in

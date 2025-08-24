@@ -37,9 +37,9 @@ export const navigationsData: NavigationType[] = [
         ],
       },
       {
-        title: "Find Creators",
-        href: "/outreach/find-creators",
-        iconName: "Users",
+        title: "Settings",
+        iconName: "Settings",
+        href: "/account/settings",
       },
     ],
   },

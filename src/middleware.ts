@@ -44,17 +44,21 @@ export async function middleware(request: NextRequest) {
     // const token = await getCookieCache(request, {
     //   cookiePrefix: "TmVzdEpTIEJvaWxlcnBsYXRl",
     // })
-
-    const { data: token } = await betterFetch(
-      `${process.env.BACKEND_API_URL}/auth/get-session`,
-      {
-        baseURL: request.nextUrl.origin,
-        headers: {
-          cookie: request.headers.get("cookie") || "", // Forward the cookies from the request
-        },
-      }
-    )
-    const isAuthenticated = !!token
+    let isAuthenticated = false
+    try {
+      const { data: token } = await betterFetch(
+        `${process.env.BACKEND_API_URL}/auth/get-session`,
+        {
+          baseURL: request.nextUrl.origin,
+          headers: {
+            cookie: request.headers.get("cookie") || "", // Forward the cookies from the request
+          },
+        }
+      )
+      isAuthenticated = !!token
+    } catch (error) {
+      console.log("Error fetching session:", error)
+    }
 
     const isGuest = isGuestRoute(pathnameWithoutLocale)
     const isProtected = !isGuest
