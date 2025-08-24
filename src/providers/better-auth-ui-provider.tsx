@@ -16,6 +16,9 @@ export function BetterAuthUIProvider({ children }: { children: ReactNode }) {
       authClient={authClient}
       navigate={router.push}
       replace={router.replace}
+      magicLink
+      passkey
+      multiSession
       onSessionChange={() => {
         // Clear router cache (protected routes)
         router.refresh()
