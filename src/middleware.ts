@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
-import { getCookieCache } from "better-auth/cookies"
+// import { getCookieCache } from "better-auth/cookies"
+import { betterFetch } from "@better-fetch/fetch"
 
 import type { NextRequest } from "next/server"
 
@@ -40,8 +41,19 @@ export async function middleware(request: NextRequest) {
 
   // Handle authentication for protected and guest routes
   if (isNotPublic) {
-    const token = true
-    console.log("token", await getCookieCache(request))
+    // const token = await getCookieCache(request, {
+    //   cookiePrefix: "TmVzdEpTIEJvaWxlcnBsYXRl",
+    // })
+
+    const { data: token } = await betterFetch(
+      `${process.env.BACKEND_API_URL}/auth/get-session`,
+      {
+        baseURL: request.nextUrl.origin,
+        headers: {
+          cookie: request.headers.get("cookie") || "", // Forward the cookies from the request
+        },
+      }
+    )
     const isAuthenticated = !!token
 
     const isGuest = isGuestRoute(pathnameWithoutLocale)

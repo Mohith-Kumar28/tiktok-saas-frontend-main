@@ -1,26 +1,30 @@
 "use client"
 
-import { useParams } from "next/navigation"
+// import { useParams } from "next/navigation"
+import { UserButton } from "@daveyplate/better-auth-ui"
 
 import type { DictionaryType } from "@/lib/get-dictionary"
-import type { LocaleType } from "@/types/types"
+
+// import type { LocaleType } from "@/types/types"
 
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { LanguageDropdown } from "@/components/language-dropdown"
 import { FullscreenToggle } from "@/components/layout/full-screen-toggle"
 import { ModeDropdown } from "@/components/layout/mode-dropdown"
 import { NotificationDropdown } from "@/components/layout/notification-dropdown"
-import { UserDropdown } from "@/components/layout/user-dropdown"
+// import { UserDropdown } from "@/components/layout/user-dropdown"
 import { ToggleMobileSidebar } from "../toggle-mobile-sidebar"
+
+// import { UserDropdown } from "../user-dropdown"
 
 export function VerticalLayoutHeader({
   dictionary,
 }: {
   dictionary: DictionaryType
 }) {
-  const params = useParams()
+  // const params = useParams()
 
-  const locale = params.lang as LocaleType
+  // const locale = params.lang as LocaleType
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background border-b border-sidebar-border">
@@ -32,7 +36,8 @@ export function VerticalLayoutHeader({
           <FullscreenToggle />
           <ModeDropdown dictionary={dictionary} />
           <LanguageDropdown dictionary={dictionary} />
-          <UserDropdown dictionary={dictionary} locale={locale} />
+          {/* <UserDropdown dictionary={dictionary} locale={locale} /> */}
+          <UserButton size="icon" />
         </div>
       </div>
     </header>
