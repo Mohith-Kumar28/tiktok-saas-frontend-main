@@ -139,7 +139,7 @@ export function Sidebar({ dictionary }: { dictionary: DictionaryType }) {
             width={24}
             className="dark:invert"
           /> */}
-          <span>LOGO</span>
+          <span>3Dot.AI</span>
         </Link>
         <CommandMenu dictionary={dictionary} buttonClassName="max-w-full" />
       </SidebarHeader>

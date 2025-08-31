@@ -165,7 +165,7 @@ export default function LinkedServicesPage() {
       )
 
       // Open in a new tab
-      window.open(data.authUrl)
+      // window.open(data.authUrl)
       router.push(data.authUrl)
     } catch (error) {
       console.error("Failed to initiate TikTok authorization:", error)
