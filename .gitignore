@@ -46,4 +46,4 @@ openapi-ts-error*.log
 .trae
 
 # ignore files, Its for references
-references_ignore_me
+.references_ignore_me
