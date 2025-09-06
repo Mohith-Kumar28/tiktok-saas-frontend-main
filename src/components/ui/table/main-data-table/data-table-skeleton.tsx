@@ -37,7 +37,10 @@ export function DataTableSkeleton({
   )
 
   return (
-    <div className={cn("flex flex-1 flex-col space-y-4", className)} {...props}>
+    <div
+      className={cn("flex w-full flex-col gap-2.5 overflow-auto", className)}
+      {...props}
+    >
       <div className="flex w-full items-center justify-between gap-2 overflow-auto p-1">
         <div className="flex flex-1 items-center gap-2">
           {filterCount > 0
@@ -50,8 +53,7 @@ export function DataTableSkeleton({
           <Skeleton className="ml-auto hidden h-7 w-[4.5rem] lg:flex" />
         ) : null}
       </div>
-
-      <div className="flex-1 rounded-md border">
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
             {Array.from({ length: 1 }).map((_, i) => (
@@ -97,7 +99,7 @@ export function DataTableSkeleton({
               <Skeleton className="h-7 w-24" />
               <Skeleton className="h-7 w-[4.5rem]" />
             </div>
-            <div className="flex items-center justify-center text-sm font-medium">
+            <div className="flex items-center justify-center font-medium text-sm">
               <Skeleton className="h-7 w-20" />
             </div>
             <div className="flex items-center gap-2">

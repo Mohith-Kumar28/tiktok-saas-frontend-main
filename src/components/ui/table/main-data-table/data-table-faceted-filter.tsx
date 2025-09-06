@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { Check, PlusCircle, XCircle } from "lucide-react"
 
 import type { Column } from "@tanstack/react-table"
 import type { Option } from "../types/data-table"
@@ -24,7 +25,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
-import { DynamicIcon } from "@/components/dynamic-icon"
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>
@@ -42,9 +42,8 @@ export function DataTableFacetedFilter<TData, TValue>({
   const [open, setOpen] = React.useState(false)
 
   const columnFilterValue = column?.getFilterValue()
-  const selectedValues = React.useMemo(
-    () => new Set(Array.isArray(columnFilterValue) ? columnFilterValue : []),
-    [columnFilterValue]
+  const selectedValues = new Set(
+    Array.isArray(columnFilterValue) ? columnFilterValue : []
   )
 
   const onItemSelect = React.useCallback(
@@ -86,12 +85,12 @@ export function DataTableFacetedFilter<TData, TValue>({
               aria-label={`Clear ${title} filter`}
               tabIndex={0}
               onClick={onReset}
-              className="focus-visible:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:outline-none"
+              className="rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
             >
-              <DynamicIcon name="CircleX" />
+              <XCircle />
             </div>
           ) : (
-            <DynamicIcon name="CirclePlus" />
+            <PlusCircle />
           )}
           {title}
           {selectedValues?.size > 0 && (
@@ -137,7 +136,7 @@ export function DataTableFacetedFilter<TData, TValue>({
           <CommandInput placeholder={title} />
           <CommandList className="max-h-full">
             <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup className="max-h-[18.75rem] overflow-x-hidden overflow-y-auto">
+            <CommandGroup className="max-h-[18.75rem] overflow-y-auto overflow-x-hidden">
               {options.map((option) => {
                 const isSelected = selectedValues.has(option.value)
 
@@ -148,13 +147,13 @@ export function DataTableFacetedFilter<TData, TValue>({
                   >
                     <div
                       className={cn(
-                        "border-primary flex size-4 items-center justify-center rounded-sm border",
+                        "flex size-4 items-center justify-center rounded-sm border border-primary",
                         isSelected
                           ? "bg-primary"
                           : "opacity-50 [&_svg]:invisible"
                       )}
                     >
-                      <DynamicIcon name="Check" />
+                      <Check />
                     </div>
                     {option.icon && <option.icon />}
                     <span className="truncate">{option.label}</span>

@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { X } from "lucide-react"
 
 import type { Column, Table } from "@tanstack/react-table"
 
@@ -8,7 +9,6 @@ import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { DynamicIcon } from "@/components/dynamic-icon"
 import { DataTableDateFilter } from "./data-table-date-filter"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 import { DataTableSliderFilter } from "./data-table-slider-filter"
@@ -57,7 +57,7 @@ export function DataTableToolbar<TData>({
             className="border-dashed"
             onClick={onReset}
           >
-            <DynamicIcon name="X" />
+            <X />
             Reset
           </Button>
         )}
@@ -105,7 +105,7 @@ function DataTableToolbarFilter<TData>({
                 className={cn("h-8 w-[120px]", columnMeta.unit && "pr-8")}
               />
               {columnMeta.unit && (
-                <span className="bg-accent text-muted-foreground absolute top-0 right-0 bottom-0 flex items-center rounded-r-md px-2 text-sm">
+                <span className="absolute top-0 right-0 bottom-0 flex items-center rounded-r-md bg-accent px-2 text-muted-foreground text-sm">
                   {columnMeta.unit}
                 </span>
               )}

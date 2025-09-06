@@ -1,5 +1,7 @@
 "use client"
 
+import { ChevronDown, ChevronUp, ChevronsUpDown, EyeOff, X } from "lucide-react"
+
 import type { Column } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
@@ -11,7 +13,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { DynamicIcon } from "@/components/dynamic-icon"
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.ComponentProps<typeof DropdownMenuTrigger> {
@@ -33,7 +34,7 @@ export function DataTableColumnHeader<TData, TValue>({
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          "hover:bg-accent focus:ring-ring data-[state=open]:bg-accent [&_svg]:text-muted-foreground -ml-1.5 flex h-8 items-center gap-1.5 rounded-md px-2 py-1.5 focus:ring-1 focus:outline-none [&_svg]:size-4 [&_svg]:shrink-0",
+          "-ml-1.5 flex h-8 items-center gap-1.5 rounded-md px-2 py-1.5 hover:bg-accent focus:outline-none focus:ring-1 focus:ring-ring data-[state=open]:bg-accent [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground",
           className
         )}
         {...props}
@@ -41,38 +42,38 @@ export function DataTableColumnHeader<TData, TValue>({
         {title}
         {column.getCanSort() &&
           (column.getIsSorted() === "desc" ? (
-            <DynamicIcon name="ChevronDown" />
+            <ChevronDown />
           ) : column.getIsSorted() === "asc" ? (
-            <DynamicIcon name="ChevronUp" />
+            <ChevronUp />
           ) : (
-            <DynamicIcon name="ChevronsUpDown" />
+            <ChevronsUpDown />
           ))}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-28">
         {column.getCanSort() && (
           <>
             <DropdownMenuCheckboxItem
-              className="[&_svg]:text-muted-foreground relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto gap-2"
+              className="relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto [&_svg]:text-muted-foreground"
               checked={column.getIsSorted() === "asc"}
               onClick={() => column.toggleSorting(false)}
             >
-              <DynamicIcon name="ChevronUp" />
+              <ChevronUp />
               Asc
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
-              className="[&_svg]:text-muted-foreground relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto gap-2"
+              className="relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto [&_svg]:text-muted-foreground"
               checked={column.getIsSorted() === "desc"}
               onClick={() => column.toggleSorting(true)}
             >
-              <DynamicIcon name="ChevronDown" />
+              <ChevronDown />
               Desc
             </DropdownMenuCheckboxItem>
             {column.getIsSorted() && (
               <DropdownMenuItem
-                className="[&_svg]:text-muted-foreground pl-2"
+                className="pl-2 [&_svg]:text-muted-foreground"
                 onClick={() => column.clearSorting()}
               >
-                <DynamicIcon name="X" />
+                <X />
                 Reset
               </DropdownMenuItem>
             )}
@@ -80,11 +81,11 @@ export function DataTableColumnHeader<TData, TValue>({
         )}
         {column.getCanHide() && (
           <DropdownMenuCheckboxItem
-            className="[&_svg]:text-muted-foreground relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto gap-2"
+            className="relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto [&_svg]:text-muted-foreground"
             checked={!column.getIsVisible()}
             onClick={() => column.toggleVisibility(false)}
           >
-            <DynamicIcon name="EyeOff" />
+            <EyeOff />
             Hide
           </DropdownMenuCheckboxItem>
         )}
