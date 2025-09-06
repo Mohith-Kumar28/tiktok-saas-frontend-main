@@ -41,3 +41,6 @@ next-env.d.ts
 
 # openapi-ts-logs
 openapi-ts-error*.log
+
+# Trae IDE rules
+.trae
