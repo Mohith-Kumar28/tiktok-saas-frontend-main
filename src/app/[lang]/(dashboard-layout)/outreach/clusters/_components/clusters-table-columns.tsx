@@ -3,9 +3,9 @@
 import * as React from "react"
 import {
   Calendar,
-  // CheckCircle,
-  // Circle,
-  // Clock,
+  CheckCircle,
+  Circle,
+  Clock,
   Hash,
   MoreHorizontal,
   Text,
@@ -44,16 +44,16 @@ interface GetClustersTableColumnsProps {
   >
 }
 
-// function getStatusIcon(status: ClusterStatus) {
-//   const statusIcons = {
-//     active: CheckCircle,
-//     inactive: Circle,
-//     draft: Clock,
-//     archived: Circle,
-//   }
+function getStatusIcon(status: ClusterStatus) {
+  const statusIcons = {
+    active: CheckCircle,
+    inactive: Circle,
+    draft: Clock,
+    archived: Circle,
+  }
 
-//   return statusIcons[status]
-// }
+  return statusIcons[status]
+}
 
 function getTypeIcon(type: ClusterType) {
   const typeIcons = {
@@ -73,8 +73,8 @@ export function getClustersTableColumns({
   typeCounts,
   creatorCountRange,
   totalReachRange,
-  avgEngagementRateRange,
-  _createdAtRange,
+  // avgEngagementRateRange,
+  // _createdAtRange,
   setRowAction,
 }: GetClustersTableColumnsProps): ColumnDef<Cluster>[] {
   return [
@@ -162,26 +162,26 @@ export function getClustersTableColumns({
       },
       enableColumnFilter: true,
     },
-    // {
-    //   accessorKey: "status",
-    //   header: ({ column }) => (
-    //     <DataTableColumnHeader column={column} title="Status" />
-    //   ),
-    //   cell: ({ row }) => {
-    //     const status = row.getValue("status") as ClusterStatus
-    //     const Icon = getStatusIcon(status)
+    {
+      accessorKey: "status",
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Status" />
+      ),
+      cell: ({ row }) => {
+        const status = row.getValue("status") as ClusterStatus
+        const Icon = getStatusIcon(status)
 
-    //     return (
-    //       <div className="flex w-[6.25rem] items-center">
-    //         <Icon className="mr-2 size-4 text-muted-foreground" />
-    //         <Badge variant="outline" className="capitalize">
-    //           {status}
-    //         </Badge>
-    //       </div>
-    //     )
-    //   },
-    //   enableColumnFilter: false,
-    // },
+        return (
+          <div className="flex w-[6.25rem] items-center">
+            <Icon className="mr-2 size-4 text-muted-foreground" />
+            <Badge variant="outline" className="capitalize">
+              {status}
+            </Badge>
+          </div>
+        )
+      },
+      enableColumnFilter: false,
+    },
     {
       accessorKey: "creatorCount",
       header: ({ column }) => (
@@ -238,33 +238,33 @@ export function getClustersTableColumns({
       },
       enableColumnFilter: true,
     },
-    {
-      accessorKey: "avgEngagementRate",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Avg Engagement" />
-      ),
-      cell: ({ row }) => {
-        const avgEngagementRate = row.getValue("avgEngagementRate") as number
-        return (
-          <div className="flex w-[6.25rem] items-center">
-            <span>{(avgEngagementRate * 100).toFixed(2)}%</span>
-          </div>
-        )
-      },
-      filterFn: (row, id, value) => {
-        const rowValue = row.getValue(id) as number
-        const [min, max] = value as [number, number]
-        return rowValue >= min && rowValue <= max
-      },
-      meta: {
-        label: "Avg Engagement",
-        variant: "range",
-        range: [avgEngagementRateRange.min, avgEngagementRateRange.max],
-        unit: "%",
-        icon: Zap,
-      },
-      enableColumnFilter: true,
-    },
+    // {
+    //   accessorKey: "avgEngagementRate",
+    //   header: ({ column }) => (
+    //     <DataTableColumnHeader column={column} title="Avg Engagement" />
+    //   ),
+    //   cell: ({ row }) => {
+    //     const avgEngagementRate = row.getValue("avgEngagementRate") as number
+    //     return (
+    //       <div className="flex w-[6.25rem] items-center">
+    //         <span>{(avgEngagementRate * 100).toFixed(2)}%</span>
+    //       </div>
+    //     )
+    //   },
+    //   filterFn: (row, id, value) => {
+    //     const rowValue = row.getValue(id) as number
+    //     const [min, max] = value as [number, number]
+    //     return rowValue >= min && rowValue <= max
+    //   },
+    //   meta: {
+    //     label: "Avg Engagement",
+    //     variant: "range",
+    //     range: [avgEngagementRateRange.min, avgEngagementRateRange.max],
+    //     unit: "%",
+    //     icon: Zap,
+    //   },
+    //   enableColumnFilter: true,
+    // },
     {
       accessorKey: "tags",
       header: ({ column }) => (
