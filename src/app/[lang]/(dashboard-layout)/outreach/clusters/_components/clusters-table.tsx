@@ -17,7 +17,6 @@ import type { Cluster } from "../_lib/types"
 import { useDataTable } from "@/components/ui/table/hooks/use-data-table"
 import { DataTable } from "@/components/ui/table/main-data-table/data-table"
 import { DataTableToolbar } from "@/components/ui/table/main-data-table/data-table-toolbar"
-import { Shell } from "@/components/shell"
 import { ClustersTableActionBar } from "./clusters-table-action-bar"
 import { getClustersTableColumns } from "./clusters-table-columns"
 
@@ -91,13 +90,11 @@ export function ClustersTable({
   })
 
   return (
-    <Shell className="gap-2">
-      <DataTable
-        table={table}
-        actionBar={<ClustersTableActionBar table={table} />}
-      >
-        <DataTableToolbar table={table}></DataTableToolbar>
-      </DataTable>
-    </Shell>
+    <DataTable
+      table={table}
+      actionBar={<ClustersTableActionBar table={table} />}
+    >
+      <DataTableToolbar table={table}></DataTableToolbar>
+    </DataTable>
   )
 }

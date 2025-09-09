@@ -3,9 +3,9 @@
 import * as React from "react"
 import {
   Calendar,
-  CheckCircle,
-  Circle,
-  Clock,
+  // CheckCircle,
+  // Circle,
+  // Clock,
   Hash,
   MoreHorizontal,
   Text,
@@ -44,16 +44,16 @@ interface GetClustersTableColumnsProps {
   >
 }
 
-function getStatusIcon(status: ClusterStatus) {
-  const statusIcons = {
-    active: CheckCircle,
-    inactive: Circle,
-    draft: Clock,
-    archived: Circle,
-  }
+// function getStatusIcon(status: ClusterStatus) {
+//   const statusIcons = {
+//     active: CheckCircle,
+//     inactive: Circle,
+//     draft: Clock,
+//     archived: Circle,
+//   }
 
-  return statusIcons[status]
-}
+//   return statusIcons[status]
+// }
 
 function getTypeIcon(type: ClusterType) {
   const typeIcons = {
@@ -162,26 +162,26 @@ export function getClustersTableColumns({
       },
       enableColumnFilter: true,
     },
-    {
-      accessorKey: "status",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Status" />
-      ),
-      cell: ({ row }) => {
-        const status = row.getValue("status") as ClusterStatus
-        const Icon = getStatusIcon(status)
+    // {
+    //   accessorKey: "status",
+    //   header: ({ column }) => (
+    //     <DataTableColumnHeader column={column} title="Status" />
+    //   ),
+    //   cell: ({ row }) => {
+    //     const status = row.getValue("status") as ClusterStatus
+    //     const Icon = getStatusIcon(status)
 
-        return (
-          <div className="flex w-[6.25rem] items-center">
-            <Icon className="mr-2 size-4 text-muted-foreground" />
-            <Badge variant="outline" className="capitalize">
-              {status}
-            </Badge>
-          </div>
-        )
-      },
-      enableColumnFilter: false,
-    },
+    //     return (
+    //       <div className="flex w-[6.25rem] items-center">
+    //         <Icon className="mr-2 size-4 text-muted-foreground" />
+    //         <Badge variant="outline" className="capitalize">
+    //           {status}
+    //         </Badge>
+    //       </div>
+    //     )
+    //   },
+    //   enableColumnFilter: false,
+    // },
     {
       accessorKey: "creatorCount",
       header: ({ column }) => (
