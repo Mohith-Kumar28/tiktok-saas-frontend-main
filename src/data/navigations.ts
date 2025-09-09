@@ -28,7 +28,7 @@ export const navigationsData: NavigationType[] = [
           },
           {
             title: "My Lists",
-            href: "/outreach/lists",
+            href: "/outreach/clusters",
           },
           {
             title: "Find Creators",
