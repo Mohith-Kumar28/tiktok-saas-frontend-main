@@ -6,7 +6,7 @@ export const navigationsData: NavigationType[] = [
     items: [
       {
         title: "Analytics",
-        href: "/dashboards/analytics",
+        href: "/dashboards/crm",
         iconName: "ChartPie",
       },
     ],
