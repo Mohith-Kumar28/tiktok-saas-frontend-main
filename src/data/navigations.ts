@@ -23,10 +23,6 @@ export const navigationsData: NavigationType[] = [
             href: "/outreach/bots",
           },
           {
-            title: "Email Campaigns",
-            href: "/outreach/email-campaigns",
-          },
-          {
             title: "My Lists",
             href: "/outreach/clusters",
           },
@@ -35,6 +31,11 @@ export const navigationsData: NavigationType[] = [
             href: "/outreach/find-creators",
           },
         ],
+      },
+      {
+        title: "Unread IM's",
+        iconName: "Mail",
+        href: "/apps/chat",
       },
       {
         title: "Settings",
