@@ -1,4 +1,4 @@
-import type { DynamicIconNameType } from "@/types"
+import type { DynamicIconNameType } from "@/types/types"
 import type { z } from "zod"
 import type { EmailComposerSchema } from "./_schemas/email-composer-schema"
 import type { EmailListSearchSchema } from "./_schemas/email-list-search-schema"

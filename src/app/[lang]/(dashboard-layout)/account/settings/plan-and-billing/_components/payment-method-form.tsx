@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { CreditCard, Landmark } from "lucide-react"
 
-import type { PaymentMethodFormType } from "@/app/[lang]/(dashboard-layout)/pages/account/types"
+import type { PaymentMethodFormType } from "@/app/[lang]/(dashboard-layout)/account/types"
 
 import { PaymentMethodSchema } from "../_schemas/payment-method-schema"
 

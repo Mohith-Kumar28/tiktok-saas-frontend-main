@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 import type { ParamValue } from "next/dist/server/request/params"
 import type { EmailSidebarItemType } from "../types"
 

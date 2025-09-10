@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { useParams } from "next/navigation"
 
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 import type { ChatType } from "../../types"
 
 import { ensureLocalizedPathname } from "@/lib/i18n"

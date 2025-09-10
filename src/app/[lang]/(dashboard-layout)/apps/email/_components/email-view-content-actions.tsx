@@ -2,7 +2,7 @@
 
 import { Archive, Clock, MoreVertical, Star, Tag, Trash2 } from "lucide-react"
 
-import type { IconType } from "@/types"
+import type { IconType } from "@/types/types"
 import type { ComponentProps } from "react"
 
 import { Button } from "@/components/ui/button"

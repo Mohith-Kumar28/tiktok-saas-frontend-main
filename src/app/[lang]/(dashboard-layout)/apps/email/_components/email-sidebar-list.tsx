@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation"
 
-import type { LocaleType } from "@/types"
+import type { LocaleType } from "@/types/types"
 
 import { useEmailContext } from "../_hooks/use-email-context"
 import { EmailSidebarItem } from "./email-sidebar-item"

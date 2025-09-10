@@ -2,7 +2,7 @@
 
 import { createContext, useReducer, useState } from "react"
 
-import type { FileType } from "@/types"
+import type { FileType } from "@/types/types"
 import type { ReactNode } from "react"
 import type { ChatContextType, ChatType } from "../types"
 

@@ -1,4 +1,4 @@
-import type { FileType } from "@/types"
+import type { FileType } from "@/types/types"
 import type { z } from "zod"
 import type { FilesUploaderSchema } from "./_schemas/files-uploader-schema"
 import type { ImagesUploaderSchema } from "./_schemas/images-uploader-schema"

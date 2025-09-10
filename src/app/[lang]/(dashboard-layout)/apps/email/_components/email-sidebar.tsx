@@ -40,7 +40,7 @@ export function EmailSidebar() {
   // Render a sheet sidebar for smaller screens
   return (
     <Sheet open={isEmailSidebarOpen} onOpenChange={setIsEmailSidebarOpen}>
-      <SheetContent side="start" className="p-0">
+      <SheetContent side="left" className="p-0">
         <SheetHeader className="sr-only">
           <SheetTitle>Email Sidebar</SheetTitle>
           <SheetDescription>

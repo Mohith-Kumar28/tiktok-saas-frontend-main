@@ -99,7 +99,7 @@ export function KanbanAddTaskSidebar() {
       open={kanbanAddTaskSidebarIsOpen}
       onOpenChange={() => handleSidebarClose()}
     >
-      <SheetContent className="p-0" side="end">
+      <SheetContent className="p-0" side="right">
         <ScrollArea className="h-full p-4">
           <SheetHeader>
             <SheetTitle>Add New Task</SheetTitle>

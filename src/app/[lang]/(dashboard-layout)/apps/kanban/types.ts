@@ -1,4 +1,4 @@
-import type { FileType } from "@/types"
+import type { FileType } from "@/types/types"
 import type { z } from "zod"
 import type { KanbanColumnSchema } from "./_schemas/kanban-column-schema"
 import type { KanbanTaskSchema } from "./_schemas/kanban-task-schema"
