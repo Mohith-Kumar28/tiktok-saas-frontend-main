@@ -2,7 +2,6 @@
 
 import { Fragment, useState } from "react"
 import { useChat } from "@ai-sdk/react"
-import { DefaultChatTransport } from "ai"
 import { CopyIcon, GlobeIcon, RefreshCcwIcon } from "lucide-react"
 
 import type { PromptInputMessage } from "@/components/ai-elements/prompt-input"
@@ -63,12 +62,7 @@ const ChatBotDemo = () => {
   const [input, setInput] = useState("")
   const [model, setModel] = useState<string>(models[0].value)
   const [webSearch, setWebSearch] = useState(false)
-  const { messages, sendMessage, status } = useChat({
-    transport: new DefaultChatTransport({
-      // api: "http://localhost:8000/api/v1/chat/stream",
-      // credentials: "include",
-    }),
-  })
+  const { messages, sendMessage, status } = useChat()
 
   const handleSubmit = (message: PromptInputMessage) => {
     const hasText = Boolean(message.text)
