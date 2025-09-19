@@ -24,11 +24,11 @@ import {
   PromptInputAttachments,
   PromptInputBody,
   PromptInputButton,
-  PromptInputModelSelect,
-  PromptInputModelSelectContent,
-  PromptInputModelSelectItem,
-  PromptInputModelSelectTrigger,
-  PromptInputModelSelectValue,
+  // PromptInputModelSelect,
+  // PromptInputModelSelectContent,
+  // PromptInputModelSelectItem,
+  // PromptInputModelSelectTrigger,
+  // PromptInputModelSelectValue,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputToolbar,
@@ -47,20 +47,20 @@ import {
   SourcesTrigger,
 } from "@/components/ai-elements/sources"
 
-const models = [
-  {
-    name: "GPT 4o",
-    value: "openai/gpt-4o",
-  },
-  {
-    name: "Deepseek R1",
-    value: "deepseek/deepseek-r1",
-  },
-]
+// const models = [
+//   {
+//     name: "GPT 4o",
+//     value: "openai/gpt-4o",
+//   },
+//   {
+//     name: "Deepseek R1",
+//     value: "deepseek/deepseek-r1",
+//   },
+// ]
 
 const ChatBotDemo = () => {
   const [input, setInput] = useState("")
-  const [model, setModel] = useState<string>(models[0].value)
+  // const [model, setModel] = useState<string>(models[0].value)
   const [webSearch, setWebSearch] = useState(false)
   const { messages, sendMessage, status } = useChat()
 
@@ -80,7 +80,7 @@ const ChatBotDemo = () => {
       {
         body: {
           // model: model,
-          // webSearch: webSearch,
+          webSearch: webSearch,
         },
       }
     )
@@ -88,7 +88,7 @@ const ChatBotDemo = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 relative size-full h-full">
+    <div className=" relative size-full h-full">
       <div className="flex flex-col h-full">
         <Conversation className="h-full">
           <ConversationContent>
@@ -202,7 +202,7 @@ const ChatBotDemo = () => {
                 <GlobeIcon size={16} />
                 <span>Search</span>
               </PromptInputButton>
-              <PromptInputModelSelect
+              {/* <PromptInputModelSelect
                 onValueChange={(value) => {
                   setModel(value)
                 }}
@@ -221,7 +221,7 @@ const ChatBotDemo = () => {
                     </PromptInputModelSelectItem>
                   ))}
                 </PromptInputModelSelectContent>
-              </PromptInputModelSelect>
+              </PromptInputModelSelect> */}
             </PromptInputTools>
             <PromptInputSubmit disabled={!input && !status} status={status} />
           </PromptInputToolbar>
