@@ -156,7 +156,8 @@
     "product": "Product",
     "actions": "Actions",
     "account": "Account",
-    "unreadIm's": "Unread IM's"
+    "unreadIm's": "Unread IM's",
+    "aiChat": "AI Chat"
   },
   "label": {
     "soon": "Soon"

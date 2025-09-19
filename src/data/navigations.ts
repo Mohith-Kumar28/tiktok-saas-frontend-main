@@ -38,6 +38,11 @@ export const navigationsData: NavigationType[] = [
         href: "/apps/chat",
       },
       {
+        title: "AI Chat",
+        iconName: "Bot",
+        href: "/apps/ai-chat",
+      },
+      {
         title: "Settings",
         iconName: "Settings",
         href: "/account/settings",
