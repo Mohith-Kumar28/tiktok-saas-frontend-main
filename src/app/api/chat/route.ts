@@ -102,71 +102,96 @@
 //   }
 // }
 
-import { google } from "@ai-sdk/google"
-import { convertToModelMessages, streamText, tool } from "ai"
-import z from "zod"
+import { openai } from "@ai-sdk/openai"
+import {
+  convertToModelMessages,
+  experimental_createMCPClient,
+  smoothStream,
+  stepCountIs,
+  streamText,
+  tool,
+} from "ai"
+import { z } from "zod"
 
-import type { UIMessage } from "ai"
+import type { InferUITools, ToolSet, UIDataTypes, UIMessage } from "ai"
 
-// Allow streaming responses up to 30 seconds
-export const maxDuration = 30
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js"
+
+// You can also connect to StreamableHTTP MCP servers
+const httpTransport = new StreamableHTTPClientTransport(
+  new URL("https://mcp.context7.com/mcp")
+)
+const httpClient = await experimental_createMCPClient({
+  transport: httpTransport,
+})
+
+// Initialize an MCP client to connect to a `stdio` MCP server:
+const transport = new StdioClientTransport({
+  // command: "node",
+  // args: [
+  //   "/Users/mohithkumar/Developer/personal/tiktok/tiktok-api-mcp/generated-mcp-server/build/index.js",
+  // ],
+  command: "npx",
+  args: ["-y", "apidog-mcp-server@latest", "--site-id=758126"],
+})
+
+const stdioClient = await experimental_createMCPClient({
+  transport,
+})
+
+const context7_tools = await httpClient.tools()
+const tiktok_tools = await stdioClient.tools()
+
+const tools = {
+  ...context7_tools,
+  ...tiktok_tools,
+  web_search: openai.tools.webSearch(),
+  getWeather: tool({
+    description: "Get the weather for a location",
+    inputSchema: z.object({
+      city: z.string().describe("The city to get the weather for"),
+      unit: z
+        .enum(["C", "F"])
+        .describe("The unit to display the temperature in"),
+    }),
+    execute: async ({ city, unit }) => {
+      const weather = {
+        value: 24,
+        description: "Sunny",
+      }
+
+      return `It is currently ${weather.value}°${unit} and ${weather.description} in ${city}!`
+    },
+  }),
+} satisfies ToolSet
+
+export type ChatTools = InferUITools<typeof tools>
+
+export type ChatMessage = UIMessage<never, UIDataTypes, ChatTools>
 
 export async function POST(req: Request) {
-  const {
-    messages,
-    // model,
-    // webSearch,
-  }: {
-    messages: UIMessage[]
-    model: string
-    webSearch: boolean
-  } = await req.json()
+  const { messages }: { messages: ChatMessage[] } = await req.json()
 
   const result = streamText({
-    model: google("gemini-2.5-pro"),
-    messages: convertToModelMessages(messages),
+    model: openai("gpt-5-nano"),
     providerOptions: {
-      google: {
-        thinkingConfig: {
-          // thinkingBudget: 8192,
-          includeThoughts: true,
-        },
+      openai: {
+        reasoningEffort: "low",
+        reasoningSummary: "auto",
       },
     },
-    // system: `You are a helpful TikTok assistant that can help users with TikTok-related tasks.
-    //     You can provide information about TikTok users, videos, trends, and analytics.
-    //     Always be friendly, informative, and focused on TikTok-related queries.
-    //     When using tools, explain what you're doing and provide clear, actionable insights. and keep the responses in visual format and gui, Like you can use tables, graphs, or something else to make it more visual`,
-    tools: {
-      // ...(webSearch && {
-      // google_search: google.tools.googleSearch({}),
-      // }),
-      urlContext: google.tools.urlContext({}),
-
-      getWeather: tool({
-        description: "Get the weather for a location",
-        inputSchema: z.object({
-          city: z.string().describe("The city to get the weather for"),
-          unit: z
-            .enum(["C", "F"])
-            .optional()
-            .describe("The unit to display the temperature in"),
-        }),
-        execute: async ({ city, unit }) => {
-          const weather = {
-            value: 24,
-            description: "Sunny",
-          }
-
-          return `It is currently ${weather.value}°${unit} and ${weather.description} in ${city}!`
-        },
-      }),
-    },
+    system: "You are a helpful assistant.",
+    messages: convertToModelMessages(messages),
+    stopWhen: stepCountIs(20),
+    experimental_transform: smoothStream(),
+    tools,
   })
 
-  // send sources and reasoning back to the client
   return result.toUIMessageStreamResponse({
     sendSources: true,
+    sendFinish: true,
     sendReasoning: true,
+    sendStart: true,
   })
 }
