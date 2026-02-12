@@ -62,7 +62,13 @@ export function ClusterCreateSheet(props: ClusterCreateSheetProps) {
   function onSubmit(input: FormData) {
     startTransition(async () => {
       try {
-        await createCluster(input)
+        await createCluster({
+          ...input,
+          creatorCount: 0,
+          totalReach: 0,
+          avgEngagementRate: 0,
+          createdBy: "current-user", // TODO: Replace with actual user ID from auth
+        })
         toast.success("Cluster created successfully")
         form.reset()
         props.onOpenChange?.(false)
