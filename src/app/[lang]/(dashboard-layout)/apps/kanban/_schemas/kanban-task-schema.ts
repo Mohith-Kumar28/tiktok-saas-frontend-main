@@ -47,10 +47,7 @@ export const KanbanTaskSchema = z.object({
     .min(1, { message: "At least one user must be assigned." })
     .max(500, { message: "At most 500 users must be assigned." }),
   comments: z.array(CommentSchema),
-  dueDate: z.date({
-    required_error: "Due date is required.",
-    invalid_type_error: "Invalid due date. Please provide a valid date.",
-  }),
+  dueDate: z.coerce.date(),
   attachments: z.array(FileSchema).max(10, {
     message: "At most you can attach a maximum of 10 files.",
   }),
