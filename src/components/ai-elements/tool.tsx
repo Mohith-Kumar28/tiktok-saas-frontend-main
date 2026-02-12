@@ -1,13 +1,5 @@
-"use client";
+"use client"
 
-import { Badge } from "@/components/ui/badge";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { cn } from "@/lib/utils";
-import type { ToolUIPart } from "ai";
 import {
   CheckCircleIcon,
   ChevronDownIcon,
@@ -15,24 +7,35 @@ import {
   ClockIcon,
   WrenchIcon,
   XCircleIcon,
-} from "lucide-react";
-import type { ComponentProps, ReactNode } from "react";
-import { CodeBlock } from "./code-block";
+} from "lucide-react"
 
-export type ToolProps = ComponentProps<typeof Collapsible>;
+import type { ToolUIPart } from "ai"
+import type { ComponentProps, ReactNode } from "react"
+
+import { cn } from "@/lib/utils"
+
+import { Badge } from "@/components/ui/badge"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+import { CodeBlock } from "./code-block"
+
+export type ToolProps = ComponentProps<typeof Collapsible>
 
 export const Tool = ({ className, ...props }: ToolProps) => (
   <Collapsible
     className={cn("not-prose mb-4 w-full rounded-md border", className)}
     {...props}
   />
-);
+)
 
 export type ToolHeaderProps = {
-  type: ToolUIPart["type"];
-  state: ToolUIPart["state"];
-  className?: string;
-};
+  type: ToolUIPart["type"]
+  state: ToolUIPart["state"]
+  className?: string
+}
 
 const getStatusBadge = (status: ToolUIPart["state"]) => {
   const labels = {
@@ -40,22 +43,22 @@ const getStatusBadge = (status: ToolUIPart["state"]) => {
     "input-available": "Running",
     "output-available": "Completed",
     "output-error": "Error",
-  } as const;
+  } as const
 
   const icons = {
     "input-streaming": <CircleIcon className="size-4" />,
     "input-available": <ClockIcon className="size-4 animate-pulse" />,
     "output-available": <CheckCircleIcon className="size-4 text-green-600" />,
     "output-error": <XCircleIcon className="size-4 text-red-600" />,
-  } as const;
+  } as const
 
   return (
     <Badge className="gap-1.5 rounded-full text-xs" variant="secondary">
       {icons[status]}
       {labels[status]}
     </Badge>
-  );
-};
+  )
+}
 
 export const ToolHeader = ({
   className,
@@ -77,9 +80,9 @@ export const ToolHeader = ({
     </div>
     <ChevronDownIcon className="size-4 text-muted-foreground transition-transform group-data-[state=open]:rotate-180" />
   </CollapsibleTrigger>
-);
+)
 
-export type ToolContentProps = ComponentProps<typeof CollapsibleContent>;
+export type ToolContentProps = ComponentProps<typeof CollapsibleContent>
 
 export const ToolContent = ({ className, ...props }: ToolContentProps) => (
   <CollapsibleContent
@@ -89,11 +92,11 @@ export const ToolContent = ({ className, ...props }: ToolContentProps) => (
     )}
     {...props}
   />
-);
+)
 
 export type ToolInputProps = ComponentProps<"div"> & {
-  input: ToolUIPart["input"];
-};
+  input: ToolUIPart["input"]
+}
 
 export const ToolInput = ({ className, input, ...props }: ToolInputProps) => (
   <div className={cn("space-y-2 overflow-hidden p-4", className)} {...props}>
@@ -104,12 +107,12 @@ export const ToolInput = ({ className, input, ...props }: ToolInputProps) => (
       <CodeBlock code={JSON.stringify(input, null, 2)} language="json" />
     </div>
   </div>
-);
+)
 
 export type ToolOutputProps = ComponentProps<"div"> & {
-  output: ToolUIPart["output"];
-  errorText: ToolUIPart["errorText"];
-};
+  output: ToolUIPart["output"]
+  errorText: ToolUIPart["errorText"]
+}
 
 export const ToolOutput = ({
   className,
@@ -118,17 +121,17 @@ export const ToolOutput = ({
   ...props
 }: ToolOutputProps) => {
   if (!(output || errorText)) {
-    return null;
+    return null
   }
 
-  let Output = <div>{output as ReactNode}</div>;
+  let Output = <div>{output as ReactNode}</div>
 
   if (typeof output === "object") {
     Output = (
       <CodeBlock code={JSON.stringify(output, null, 2)} language="json" />
-    );
+    )
   } else if (typeof output === "string") {
-    Output = <CodeBlock code={output} language="json" />;
+    Output = <CodeBlock code={output} language="json" />
   }
 
   return (
@@ -148,5 +151,5 @@ export const ToolOutput = ({
         {Output}
       </div>
     </div>
-  );
-};
+  )
+}

@@ -12,7 +12,10 @@ import {
   getPreferredLocale,
   isPathnameMissingLocale,
 } from "@/lib/i18n"
-import { ensureRedirectPathname as _ensureRedirectPathname, ensureWithoutPrefix } from "@/lib/utils"
+import {
+  ensureRedirectPathname as _ensureRedirectPathname,
+  ensureWithoutPrefix,
+} from "@/lib/utils"
 
 function redirect(pathname: string, request: NextRequest) {
   const { search, hash } = request.nextUrl
