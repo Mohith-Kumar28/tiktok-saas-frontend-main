@@ -1,17 +1,18 @@
 import { NextResponse } from "next/server"
 // import { getCookieCache } from "better-auth/cookies"
-import { betterFetch } from "@better-fetch/fetch"
+// Temporarily unused - prefixed with underscore for linting
+import { betterFetch as _betterFetch } from "@better-fetch/fetch"
 
 import type { NextRequest } from "next/server"
 
-import { isGuestRoute, isPublicRoute } from "@/lib/auth-routes"
+import { isGuestRoute as _isGuestRoute, isPublicRoute } from "@/lib/auth-routes"
 import {
   ensureLocalizedPathname,
   getLocaleFromPathname,
   getPreferredLocale,
   isPathnameMissingLocale,
 } from "@/lib/i18n"
-import { ensureRedirectPathname, ensureWithoutPrefix } from "@/lib/utils"
+import { ensureRedirectPathname as _ensureRedirectPathname, ensureWithoutPrefix } from "@/lib/utils"
 
 function redirect(pathname: string, request: NextRequest) {
   const { search, hash } = request.nextUrl
@@ -37,7 +38,7 @@ export async function middleware(request: NextRequest) {
 
   const locale = getLocaleFromPathname(pathname)
   const pathnameWithoutLocale = ensureWithoutPrefix(pathname, `/${locale}`)
-  const isNotPublic = !isPublicRoute(pathnameWithoutLocale)
+  const _isNotPublic = !isPublicRoute(pathnameWithoutLocale)
 
   // TEMPORARILY DISABLED: Authentication is currently bypassed
   // Handle authentication for protected and guest routes
