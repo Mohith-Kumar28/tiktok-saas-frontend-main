@@ -39,45 +39,51 @@ export async function middleware(request: NextRequest) {
   const pathnameWithoutLocale = ensureWithoutPrefix(pathname, `/${locale}`)
   const isNotPublic = !isPublicRoute(pathnameWithoutLocale)
 
+  // TEMPORARILY DISABLED: Authentication is currently bypassed
   // Handle authentication for protected and guest routes
-  if (isNotPublic) {
-    // const token = await getCookieCache(request, {
-    //   cookiePrefix: "TmVzdEpTIEJvaWxlcnBsYXRl",
-    // })
-    let isAuthenticated = false
-    try {
-      const { data: token } = await betterFetch(
-        `${process.env.BACKEND_API_URL}/auth/get-session`,
-        {
-          baseURL: request.nextUrl.origin,
-          headers: {
-            cookie: request.headers.get("cookie") || "", // Forward the cookies from the request
-          },
-        }
-      )
-      isAuthenticated = !!token
-    } catch (error) {
-      console.log("Error fetching session:", error)
-    }
+  // if (isNotPublic) {
+  //   // const token = await getCookieCache(request, {
+  //   //   cookiePrefix: "TmVzdEpTIEJvaWxlcnBsYXRl",
+  //   // })
+  //   let isAuthenticated = false
+  //   try {
+  //     const { data: token } = await betterFetch(
+  //       `${process.env.BACKEND_API_URL}/auth/get-session`,
+  //       {
+  //         baseURL: request.nextUrl.origin,
+  //         headers: {
+  //           cookie: request.headers.get("cookie") || "", // Forward the cookies from the request
+  //         },
+  //       }
+  //     )
+  //     isAuthenticated = !!token
+  //   } catch (error) {
+  //     console.log("Error fetching session:", error)
+  //   }
 
-    const isGuest = isGuestRoute(pathnameWithoutLocale)
-    const isProtected = !isGuest
+  //   const isGuest = isGuestRoute(pathnameWithoutLocale)
+  //   const isProtected = !isGuest
 
-    // Redirect authenticated users away from guest routes
-    if (isAuthenticated && isGuest) {
-      return redirect(process.env.HOME_PATHNAME || "/", request)
-    }
+  //   // Redirect authenticated users away from guest routes
+  //   if (isAuthenticated && isGuest) {
+  //     return redirect(process.env.HOME_PATHNAME || "/", request)
+  //   }
 
-    // Redirect unauthenticated users from protected routes to sign-in
-    if (!isAuthenticated && isProtected) {
-      let redirectPathname = "/auth/sign-in"
-      // Maintain the original path for redirection, but avoid redirecting to sign-in itself
-      if (pathnameWithoutLocale !== "") {
-        redirectPathname = ensureRedirectPathname(redirectPathname, pathname)
-      }
+  //   // Redirect unauthenticated users from protected routes to sign-in
+  //   if (!isAuthenticated && isProtected) {
+  //     let redirectPathname = "/auth/sign-in"
+  //     // Maintain the original path for redirection, but avoid redirecting to sign-in itself
+  //     if (pathnameWithoutLocale !== "") {
+  //       redirectPathname = ensureRedirectPathname(redirectPathname, pathname)
+  //     }
 
-      return redirect(redirectPathname, request)
-    }
+  //     return redirect(redirectPathname, request)
+  //   }
+  // }
+
+  // TEMPORARY: Redirect root path to dashboard since authentication is disabled
+  if (pathnameWithoutLocale === "/" || pathnameWithoutLocale === "") {
+    return redirect(process.env.HOME_PATHNAME || "/dashboards/crm", request)
   }
 
   // Redirect to localized URL if the pathname is missing a locale

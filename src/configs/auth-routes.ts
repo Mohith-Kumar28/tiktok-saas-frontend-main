@@ -8,6 +8,8 @@ export const routeMap = new Map<string, RouteType>([
   ["/forgot-password", { type: "guest" }],
   ["/verify-email", { type: "guest" }],
   ["/new-password", { type: "guest" }],
-  ["/", { type: "public" }],
+  // TEMPORARILY CHANGED: Making root path redirect to dashboard
+  // ["/", { type: "public" }],
+  ["/", { type: "guest" }],
   ["/docs", { type: "public" }],
 ])
